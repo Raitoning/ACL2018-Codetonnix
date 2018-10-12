@@ -51,10 +51,25 @@ class CasePiege{
 }
 class HerosController{
 +HerosController()
-+actionPerformed()
++void keyPressed(KeyEvent)
++void keyReleased(KeyEvent)
++void keyTyped(KeyEvent)
++Cmd getCommand()
 }
 interface GameController
 interface Game
+interface GamePainter
+class LabyrinthePainter{
++int WIDTH
++int HEIGHT
++LabyrinthePainter()
++draw(BufferedImage)
+}
+class Jeu{
++Jeu()
++evolve(Cmd)
++isFinished()
+}
 
 Personnage <|-- Heros
 Personnage <|-- Monstre
@@ -73,4 +88,6 @@ Jeu "1"-->"1" Labyrinthe : lab
 Jeu "1"-->"*" Personnage : personnages
 GameController <|. HerosController
 Game <|. Jeu
+LabyrinthePainter "1"<--"1" Jeu
+GamePainter <|. LabyrinthePainter
 @enduml
