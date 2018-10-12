@@ -1,0 +1,24 @@
+Sprint 0:
+Mise en place de l'interface graphique
+Création du personnage "Heros"
+Possibilité de le deplacer
+Tests unitaires
+
+Sprint 1:
+Mise en place d'un labyrinthe basique
+Gestion des contacts avec les murs
+Tests unitaires
+
+Sprint 2:
+Ajout des cases spéciales avec effets
+Ajout des monstres et des fantomes
+Tests unitaires
+
+Sprint 3:
+Gestion des combats
+Ajout d'un pathfinding pour les monstres
+Tests unitaires
+
+Sprint 4:
+Ajout graphiques
+Tests unitaires
