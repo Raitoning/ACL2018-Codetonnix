@@ -3,8 +3,6 @@ package model;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.util.Observable;
-import java.util.Observer;
 
 import engine.Cmd;
 import engine.GamePainter;
@@ -23,16 +21,18 @@ public class PacmanPainter implements GamePainter {
 	protected static final int WIDTH = 100;
 	protected static final int HEIGHT = 100;
 
-
+    private Jeu jeu;
 	private Heros heros;
+
 	/**
 	 * appelle constructeur parent
 	 * 
-	 * @param heros
-	 *            Héros a déssiner eventuellement changer pour mettre Jeu en parametre
+	 * @param game
+	 *            Jeu a déssiner (temporairement uniquement le heros)
 	 */
-	public PacmanPainter(Heros heros) {
-        this.heros = heros;
+	public PacmanPainter(Jeu game) {
+	    this.jeu = game;
+        this.heros = game.getHeros();
 	}
 
 	/**

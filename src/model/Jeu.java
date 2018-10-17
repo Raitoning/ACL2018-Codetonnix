@@ -3,7 +3,6 @@ package model;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Observable;
 
 import engine.Cmd;
 import engine.Game;
@@ -52,6 +51,9 @@ public class Jeu implements Game {
 	public void evolve(Cmd commande) {
 		System.out.println("Execute "+commande);
             heros.deplacer(commande);
+		if (commande!=Cmd.IDLE) {
+            heros.deplacer(commande);
+        }
 	}
 
 	/**
