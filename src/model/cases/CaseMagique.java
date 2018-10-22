@@ -1,4 +1,4 @@
-package model;
+package model.cases;
 
 public class CaseMagique extends Case{
 
