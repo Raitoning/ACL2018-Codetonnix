@@ -22,6 +22,7 @@ public class Jeu implements Game {
 	 */
 
 	private Heros heros;
+	private Labyrinthe labyrinthe;
 
 	public Jeu(String source, Heros heros) {
 		BufferedReader helpReader;
@@ -36,7 +37,7 @@ public class Jeu implements Game {
 			System.out.println("Help not available");
 		}
 		this.heros = heros;
-
+		this.labyrinthe = new Labyrinthe();
 	}
 
     public Heros getHeros() {
@@ -65,4 +66,7 @@ public class Jeu implements Game {
 		return false;
 	}
 
+	public Labyrinthe getLabyrinthe() {
+		return labyrinthe;
+	}
 }

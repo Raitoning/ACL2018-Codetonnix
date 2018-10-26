@@ -1,9 +1,6 @@
 package start;
 
-import model.Heros;
-import model.HerosController;
-import model.Jeu;
-import model.HerosPainter;
+import model.*;
 import engine.GameEngineGraphical;
 
 
@@ -17,7 +14,7 @@ public class Main {
 		// creation du jeu particulier et de son afficheur
 		Jeu game = new Jeu("helpFilePacman.txt", new Heros(0,0,25));
 
-		HerosPainter painter = new HerosPainter(game);
+		LabyrinthePainter painter = new LabyrinthePainter(game);
 		HerosController controller = new HerosController();
 
 		// classe qui lance le moteur de jeu generique
