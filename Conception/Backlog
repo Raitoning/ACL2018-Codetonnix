@@ -1,0 +1,24 @@
+Sprint 1:
+Mise en place de l'interface graphique
+Déplacement du héros
+Tests unitaires
+
+Sprint 2:
+Mise en place d'un labyrinthe basique
+Gestion des contacts avec les murs
+Tests unitaires
+
+Sprint 3:
+Ajout des cases spéciales avec effets
+Ajout des monstres et des fantomes
+Tests unitaires
+
+Sprint 4:
+Gestion des combats
+Ajout d'un pathfinding pour les monstres
+Tests unitaires
+
+Sprint 5:
+Ajout graphiques
+Ajout de nouveaux labyrinthes
+Tests unitaires
