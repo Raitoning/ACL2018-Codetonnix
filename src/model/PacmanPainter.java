@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import engine.Cmd;
 import engine.GamePainter;
 
 /**
@@ -20,13 +21,18 @@ public class PacmanPainter implements GamePainter {
 	protected static final int WIDTH = 100;
 	protected static final int HEIGHT = 100;
 
+    private Jeu jeu;
+	private Heros heros;
+
 	/**
 	 * appelle constructeur parent
 	 * 
 	 * @param game
-	 *            le jeutest a afficher
+	 *            Jeu a déssiner (temporairement uniquement le heros)
 	 */
-	public PacmanPainter() {
+	public PacmanPainter(Jeu game) {
+	    this.jeu = game;
+        this.heros = game.getHeros();
 	}
 
 	/**
@@ -35,8 +41,8 @@ public class PacmanPainter implements GamePainter {
 	@Override
 	public void draw(BufferedImage im) {
 		Graphics2D crayon = (Graphics2D) im.getGraphics();
-		crayon.setColor(Color.blue);
-		crayon.fillOval(0,0,10,10);
+		crayon.setColor(Color.cyan);
+		crayon.fillOval(heros.posX,heros.posY,10,10);
 	}
 
 	@Override
