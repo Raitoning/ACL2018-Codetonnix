@@ -1,5 +1,8 @@
 package model.cases;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+
 public class CaseMur extends Case{
 
     public CaseMur(int x, int y){
