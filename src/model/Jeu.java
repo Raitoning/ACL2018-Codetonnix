@@ -36,6 +36,7 @@ public class Jeu implements Game {
 			System.out.println("Help not available");
 		}
 		this.heros = heros;
+
 	}
 
     public Heros getHeros() {
@@ -49,8 +50,7 @@ public class Jeu implements Game {
 	 */
 	@Override
 	public void evolve(Cmd commande) {
-		System.out.println("Execute "+commande);
-            heros.deplacer(commande);
+		//System.out.println("Execute "+commande);
 		if (commande!=Cmd.IDLE) {
             heros.deplacer(commande);
         }
