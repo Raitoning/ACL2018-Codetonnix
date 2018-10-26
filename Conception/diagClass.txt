@@ -1,0 +1,93 @@
+@startuml
+abstract Personnage{
++ int ptsVie
++ int posX
++ int posY
++Personnage(int, int, int)
++void deplacer()
++void attaquer()
+}
+
+class Jeu{
+
+}
+
+class Heros{
++Heros(int, int, int)
+}
+class Monstre{
++Monstre(int, int, int)
+}
+class Fantome{
++Fantome(int, int, int)
+}
+class Labyrinthe{
++Labyrinthe()
++generer(File)
+}
+abstract Case{
++int posX
++int posY
++Case(int, int)
++void action()
+}
+class CaseDefaut{
++CaseDefaut(int, int)
+}
+class CaseMur{
++CaseMur(int, int)
+}
+class CaseTresor{
++CaseTresor(int, int)
+}
+class CasePassage{
++CasePassage(int, int)
+}
+class CaseMagique{
++CaseMagique(int, int)
+}
+class CasePiege{
++CasePiege(int, int)
+}
+class HerosController{
++HerosController()
++void keyPressed(KeyEvent)
++void keyReleased(KeyEvent)
++void keyTyped(KeyEvent)
++Cmd getCommand()
+}
+interface GameController
+interface Game
+interface GamePainter
+class LabyrinthePainter{
++int WIDTH
++int HEIGHT
++LabyrinthePainter()
++draw(BufferedImage)
+}
+class Jeu{
++Jeu()
++evolve(Cmd)
++isFinished()
+}
+
+Personnage <|-- Heros
+Personnage <|-- Monstre
+Personnage <|-- Fantome
+Case <|-- CaseDefaut
+Case <|-- CaseMur
+Case <|-- CaseTresor
+Case <|-- CasePassage
+Case <|-- CaseMagique
+Case <|-- CasePiege
+
+Labyrinthe "1"-->"*" Case : cases
+Personnage "*"->"1" Labyrinthe : labyrinthe
+HerosController <-- Heros
+Jeu "1"-->"1" Labyrinthe : lab
+Jeu "1"-->"*" Personnage : personnages
+GameController <|. HerosController
+Game <|. Jeu
+LabyrinthePainter "1"<--"1" Jeu
+GamePainter <|. LabyrinthePainter
+@enduml
