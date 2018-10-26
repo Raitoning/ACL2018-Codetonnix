@@ -13,4 +13,9 @@ public class CaseMur extends Case{
     void action() {
 
     }
+
+    @Override
+    public String toString() {
+        return "x";
+    }
 }
