@@ -16,6 +16,6 @@ public class CaseMur extends Case{
 
     @Override
     public String toString() {
-        return "x";
+        return "1";
     }
 }

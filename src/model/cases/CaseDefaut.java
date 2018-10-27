@@ -13,6 +13,6 @@ public class CaseDefaut extends Case{
 
     @Override
     public String toString() {
-        return "o";
+        return "0";
     }
 }

@@ -8,8 +8,9 @@ import java.awt.image.BufferedImage;
 
 public class LabyrinthePainter implements GamePainter {
 
-    private final int WIDTH = 800, HEIGHT = 800;
+    private final int WIDTH = 1000, HEIGHT = 1000, TAILLECASE = 20;
     private Jeu jeu;
+    private ImageFactory images;
 
     /**
      * appelle constructeur
@@ -17,8 +18,9 @@ public class LabyrinthePainter implements GamePainter {
      * @param j
      *            Jeu a déssiner
      */
-    public LabyrinthePainter(Jeu j) {
+    public LabyrinthePainter(Jeu j, ImageFactory imgf) {
         this.jeu = j;
+        this.images = imgf;
     }
 
     @Override
@@ -27,12 +29,13 @@ public class LabyrinthePainter implements GamePainter {
         crayon.setColor(Color.YELLOW);
         for(int i = 0; i<this.jeu.getLabyrinthe().getCases().length; i++ ){
             for(int j = 0; j< this.jeu.getLabyrinthe().getCases()[0].length; j++ ){
-                crayon.fillRect(i*10,j*10,30,30);
+                if(this.jeu.getLabyrinthe().getCases()[i][j].toString() == "0") crayon.drawImage(images.getTableauPng()[0],j*TAILLECASE,i*TAILLECASE, null);
+                if(this.jeu.getLabyrinthe().getCases()[i][j].toString() == "1") crayon.drawImage(images.getTableauPng()[1],j*TAILLECASE,i*TAILLECASE, null);
             }
         }
         Heros heros = jeu.getHeros();
         crayon.setColor(Color.cyan);
-        crayon.fillOval(heros.posX,heros.posY,30,30);
+        crayon.drawImage(images.getTableauPng()[2], heros.posX,heros.posY,null);
     }
 
     @Override
