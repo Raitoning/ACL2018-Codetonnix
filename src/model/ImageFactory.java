@@ -23,6 +23,8 @@ public class ImageFactory {
      */
     public ImageFactory() {
         try {
+            final String dir = System.getProperty("user.dir");
+            System.out.println("current dir = " + dir);
             this.tableauPng = new Image[3];
             this.tableauPng[0] = ImageIO.read(this.getClass().getResourceAsStream(solPath));
             this.tableauPng[1] = ImageIO.read(this.getClass().getResourceAsStream(murPath));
