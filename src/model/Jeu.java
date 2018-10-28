@@ -62,8 +62,7 @@ public class Jeu implements Game {
 	 */
 	@Override
 	public boolean isFinished() {
-		// le jeu n'est jamais fini
-		return false;
+		return !heros.isAlive();
 	}
 
 	public Labyrinthe getLabyrinthe() {
