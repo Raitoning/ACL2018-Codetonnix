@@ -53,7 +53,7 @@ public class Jeu implements Game {
 	public void evolve(Cmd commande) {
 		//System.out.println("Execute "+commande);
 		if (commande!=Cmd.IDLE) {
-            heros.deplacer(commande);
+            heros.deplacer(commande, labyrinthe);
         }
 	}
 

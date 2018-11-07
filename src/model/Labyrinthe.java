@@ -8,10 +8,11 @@ import java.util.Random;
 public class Labyrinthe {
 
     private Case[][] cases;
+    private final int NBCASES = 50;
 
     public Labyrinthe(){
 
-        cases = new Case[50][50];
+        cases = new Case[NBCASES][NBCASES];
 
         Random r= new Random();
         for (int i=0;i<cases.length;i+=5){
@@ -238,4 +239,7 @@ public class Labyrinthe {
         return cases;
     }
 
+    public int getNBCASES() {
+        return NBCASES;
+    }
 }
