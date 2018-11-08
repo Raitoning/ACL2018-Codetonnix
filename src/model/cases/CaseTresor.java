@@ -7,7 +7,7 @@ public class CaseTresor extends Case{
     }
 
     @Override
-    void action() {
+    public void action() {
 
     }
 }

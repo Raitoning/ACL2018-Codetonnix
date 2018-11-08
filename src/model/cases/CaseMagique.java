@@ -7,7 +7,12 @@ public class CaseMagique extends Case{
     }
 
     @Override
-    void action() {
+    public void action() {
 
+    }
+
+    @Override
+    public boolean hasAction() {
+        return true;
     }
 }

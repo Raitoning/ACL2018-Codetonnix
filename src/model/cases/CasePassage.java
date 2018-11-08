@@ -7,7 +7,8 @@ public class CasePassage extends Case {
     }
 
     @Override
-    void action() {
+    public void action() {
 
     }
+
 }

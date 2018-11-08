@@ -10,7 +10,7 @@ public class CaseMur extends Case{
     }
 
     @Override
-    void action() {
+    public void action() {
 
     }
 
@@ -24,4 +24,5 @@ public class CaseMur extends Case{
     public boolean isSolid() {
         return true;
     }
+
 }

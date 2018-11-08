@@ -9,10 +9,14 @@ public abstract class Case {
         posY = y;
     }
 
-    abstract void action();
+    public abstract void action();
 
     public boolean isSolid(){
         return false;
-    };
+    }
+
+    public boolean hasAction(){
+        return false;
+    }
 
 }
