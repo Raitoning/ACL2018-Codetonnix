@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import engine.Cmd;
 import engine.Game;
+import model.cases.CaseTresor;
 
 /**
  * @author Horatiu Cirstea, Vincent Thomas

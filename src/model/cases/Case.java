@@ -11,4 +11,8 @@ public abstract class Case {
 
     abstract void action();
 
+    public boolean isSolid(){
+        return false;
+    };
+
 }

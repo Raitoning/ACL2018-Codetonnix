@@ -21,7 +21,7 @@ public class Labyrinthe {
             }
         }
 
-        //System.out.println(this); //affichage du labyrinthe généré
+        System.out.println(this); //affichage du labyrinthe généré
     }
 
     public void generer(File f){
@@ -39,15 +39,11 @@ public class Labyrinthe {
              * o o o o o
              * x o x o x
              */
-            for (int i = 0; i < 5; i++) {
-                for (int j = 0; j < 5; j++) {
-                    if (i % 2 == 0 && j % 2 == 0) {
-                        cases[x + i][y + j] = new CaseMur(x + i, x + j);
-                    } else {
-                        cases[x + i][y + j] = new CaseDefaut(x + i, x + j);
-                    }
-                }
-            }
+            metaTileLineInit(x,y,true,false,true, false,true);
+            metaTileLineInit(x+1,y,false,false,false, false,false);
+            metaTileLineInit(x+2,y,true,false,true, false,true);
+            metaTileLineInit(x+3,y,false,false,false, false,false);
+            metaTileLineInit(x+4,y,true,false,true, false,true);
         } else if (arg ==2){
             /** Tuile de la forme:(x murs, o default)
              * x o x o x
@@ -159,7 +155,7 @@ public class Labyrinthe {
             metaTileLineInit(x+3,y,false,true,true,true,false);
             metaTileLineInit(x+4,y,false,false,true,false,false);
 
-        } else if (arg ==9) {
+        } else if (arg ==10) {
             /** Tuile de la forme:(x murs, o default)
              * o o x o o
              * o x x x o
@@ -173,7 +169,7 @@ public class Labyrinthe {
             metaTileLineInit(x+3,y,false,true,true,true,false);
             metaTileLineInit(x+4,y,false,false,true,false,false);
 
-        } else if (arg ==10) {
+        } else if (arg ==11) {
             /** Tuile de la forme:(x murs, o default)
              * o o x o x
              * o x o o o
@@ -187,7 +183,7 @@ public class Labyrinthe {
             metaTileLineInit(x+3,y,false,false,false,true,false);
             metaTileLineInit(x+4,y,true,false,true,false,false);
 
-        } else if (arg ==11) {
+        } else if (arg ==12) {
             /** Tuile de la forme:(x murs, o default)
              * x o x o o
              * o o o x o
@@ -228,7 +224,7 @@ public class Labyrinthe {
         StringBuilder sb = new StringBuilder();
         for (int i=0;i<cases.length;i++){
             for(int j=0;j<cases[0].length;j++){
-                sb.append(cases[i][j].toString()).append(" ");
+                sb.append(cases[j][i].toString()).append(" ");
             }
             sb.append("\n");
         }

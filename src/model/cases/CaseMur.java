@@ -18,4 +18,11 @@ public class CaseMur extends Case{
     public String toString() {
         return "1";
     }
+
+
+    @Override
+    public boolean isSolid() {
+        return false
+                ;
+    }
 }
