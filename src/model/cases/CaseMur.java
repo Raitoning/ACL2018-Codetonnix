@@ -22,7 +22,6 @@ public class CaseMur extends Case{
 
     @Override
     public boolean isSolid() {
-        return false
-                ;
+        return true;
     }
 }
