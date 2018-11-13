@@ -10,4 +10,9 @@ public class CaseDefaut extends Case{
     void action() {
 
     }
+
+    @Override
+    public String toString() {
+        return "0";
+    }
 }

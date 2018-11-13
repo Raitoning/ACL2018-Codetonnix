@@ -41,11 +41,6 @@ public class DrawingPanel extends JPanel {
 	 * constructeur Il construit les images pour doublebuffering ainsi que le
 	 * Panel associe. Les images stockent le painter et on demande au panel la
 	 * mise a jour quand le painter est fini
-	 * 
-	 * @param width
-	 *            largeur de l'image
-	 * @param height
-	 *            hauteur de l'image
 	 */
 	public DrawingPanel(GamePainter painter) {
 		super();
@@ -68,7 +63,6 @@ public class DrawingPanel extends JPanel {
 	public void drawGame() {
 		// generer la nouvelle image
 		this.painter.draw(this.nextImage);
-
 		// inverses les images doublebuffereing
 		BufferedImage temp = this.currentImage;
 		// l'image a dessiner est celle qu'on a construite

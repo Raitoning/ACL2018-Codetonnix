@@ -9,6 +9,13 @@ public class Heros extends Personnage {
         super(posX, posY, ptsVie);
     }
 
+    public boolean isAlive(){
+        if (ptsVie>=0){
+            return  true;
+        }
+        return false;
+    }
+
     @Override
     void attaquer(Cmd input) {
 

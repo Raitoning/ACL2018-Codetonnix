@@ -1,6 +1,8 @@
 package model;
 
 import engine.Cmd;
+import model.cases.CaseDefaut;
+import model.cases.CaseMur;
 
 public abstract class Personnage {
 
@@ -15,16 +17,28 @@ public abstract class Personnage {
         this.ptsVie = ptsVie;
     }
 
-    protected void deplacer(Cmd input){
+    protected void deplacer(Cmd input, Labyrinthe labyrinthe){
         //TODO:Border/Collision checks
         if (input.equals(Cmd.RIGHT)){
-            posX+=1;
+            if(posX/20+1 < labyrinthe.getNBCASES()) {
+                if (!(labyrinthe.getCases()[posX / 20 + 1][posY / 20].isSolid()))
+                    posX += 20;
+            }
         } else if (input.equals(Cmd.LEFT)){
-            posX-=1;
+            if(posX/20-1 >= 0) {
+                if (!(labyrinthe.getCases()[posX / 20 - 1][posY / 20].isSolid()))
+                    posX -= 20;
+            }
         } else if(input.equals(Cmd.UP)){
-            posY-=1;
+            if(posY/20-1 >= 0) {
+                if (!(labyrinthe.getCases()[posX / 20][posY / 20 - 1].isSolid()))
+                    posY -= 20;
+            }
         }else if(input.equals(Cmd.DOWN)) {
-            posY+=1;
+            if(posY/20+1 < labyrinthe.getNBCASES()) {
+                if (!(labyrinthe.getCases()[posX / 20][posY / 20 + 1].isSolid()))
+                    posY += 20;
+            }
         }
     }
 

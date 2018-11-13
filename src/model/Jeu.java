@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import engine.Cmd;
 import engine.Game;
+import model.cases.CaseTresor;
 
 /**
  * @author Horatiu Cirstea, Vincent Thomas
@@ -22,6 +23,7 @@ public class Jeu implements Game {
 	 */
 
 	private Heros heros;
+	private Labyrinthe labyrinthe;
 
 	public Jeu(String source, Heros heros) {
 		BufferedReader helpReader;
@@ -36,6 +38,7 @@ public class Jeu implements Game {
 			System.out.println("Help not available");
 		}
 		this.heros = heros;
+		this.labyrinthe = new Labyrinthe();
 	}
 
     public Heros getHeros() {
@@ -49,10 +52,9 @@ public class Jeu implements Game {
 	 */
 	@Override
 	public void evolve(Cmd commande) {
-		System.out.println("Execute "+commande);
-            heros.deplacer(commande);
+		//System.out.println("Execute "+commande);
 		if (commande!=Cmd.IDLE) {
-            heros.deplacer(commande);
+            heros.deplacer(commande, labyrinthe);
         }
 	}
 
@@ -61,8 +63,10 @@ public class Jeu implements Game {
 	 */
 	@Override
 	public boolean isFinished() {
-		// le jeu n'est jamais fini
-		return false;
+		return !heros.isAlive();
 	}
 
+	public Labyrinthe getLabyrinthe() {
+		return labyrinthe;
+	}
 }
