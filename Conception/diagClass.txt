@@ -4,7 +4,7 @@ abstract Personnage{
 + int posX
 + int posY
 +Personnage(int, int, int)
-+void deplacer()
++void deplacer(Cmd, Labyrinthe)
 +void attaquer()
 }
 
@@ -73,7 +73,7 @@ class Jeu{
 
 Personnage <|-- Heros
 Personnage <|-- Monstre
-Personnage <|-- Fantome
+Monstre <|-- Fantome
 Case <|-- CaseDefaut
 Case <|-- CaseMur
 Case <|-- CaseTresor
