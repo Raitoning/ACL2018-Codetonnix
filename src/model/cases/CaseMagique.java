@@ -8,7 +8,7 @@ public class CaseMagique extends Case{
 
     @Override
     public void action() {
-
+        //Fait quelquechose
     }
 
     @Override

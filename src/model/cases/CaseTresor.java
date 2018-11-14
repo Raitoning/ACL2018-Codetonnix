@@ -9,5 +9,6 @@ public class CaseTresor extends Case{
     @Override
     public void action() {
 
+        //met fin au jeu
     }
 }

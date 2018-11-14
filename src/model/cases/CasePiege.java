@@ -8,7 +8,7 @@ public class CasePiege extends Case{
 
     @Override
     public void action() {
-
+        //Blesse le Joueur
     }
 
     @Override

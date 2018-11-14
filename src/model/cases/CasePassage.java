@@ -9,6 +9,8 @@ public class CasePassage extends Case {
     @Override
     public void action() {
 
+        //Téléporte le joueur
+
     }
 
 }
