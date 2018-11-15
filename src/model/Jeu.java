@@ -39,6 +39,8 @@ public class Jeu implements Game {
 		}
 		this.heros = heros;
 		this.labyrinthe = new Labyrinthe();
+
+		heros.repostion(labyrinthe,(labyrinthe.getNBCASES())*(10),0);
 	}
 
     public Heros getHeros() {
@@ -55,7 +57,10 @@ public class Jeu implements Game {
 		//System.out.println("Execute "+commande);
 		if (commande!=Cmd.IDLE) {
             heros.deplacer(commande, labyrinthe);
-        }
+        }else if ((labyrinthe.getCases()[heros.getPosX() / 20 ][heros.getPosY() / 20].hasAction())){
+			labyrinthe.getCases()[heros.getPosX() / 20 ][heros.getPosY() / 20].action(heros);
+		}
+
 	}
 
 	/**

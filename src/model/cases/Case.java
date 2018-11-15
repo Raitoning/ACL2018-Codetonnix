@@ -1,5 +1,7 @@
 package model.cases;
 
+import model.Heros;
+
 public abstract class Case {
 
     private int posX, posY;
@@ -9,10 +11,21 @@ public abstract class Case {
         posY = y;
     }
 
-    abstract void action();
+    public abstract void action(Heros h);
 
     public boolean isSolid(){
         return false;
-    };
+    }
 
+    public boolean hasAction(){
+        return false;
+    }
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
 }
