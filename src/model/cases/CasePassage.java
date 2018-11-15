@@ -24,4 +24,8 @@ public class CasePassage extends Case {
         h.setPos(x,y);
     }
 
+    @Override
+    public String toString() {
+        return "3";
+    }
 }

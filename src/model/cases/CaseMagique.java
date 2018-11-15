@@ -24,4 +24,9 @@ public class CaseMagique extends Case{
     public boolean hasAction() {
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "2";
+    }
 }

@@ -14,8 +14,9 @@ public class Labyrinthe {
 
         cases = new Case[NBCASES][NBCASES];
 
-        setGeneration(cases, exemple);
+        randomGeneration(cases);
 
+        randomSpecialTilesinit(cases,7);
         //System.out.println(this); //affichage du labyrinthe généré
     }
 
@@ -55,15 +56,15 @@ public class Labyrinthe {
         } else if (arg ==3) {
             /** Tuile de la forme:(x murs, o default)
              * x o o o x
+             * o o x o o
              * o x x x o
-             * o x x x o
-             * o x x x o
+             * o o x o o
              * x o o o x
              */
             metaTileLineInit(x,y,true,false,false, false,true);
-            metaTileLineInit(x+1,y,false,true,true, true,false);
+            metaTileLineInit(x+1,y,false,false,true, false,false);
             metaTileLineInit(x+2,y,false,true,true, true,false);
-            metaTileLineInit(x+3,y,false,true,true, true,false);
+            metaTileLineInit(x+3,y,false,false,true, false,false);
             metaTileLineInit(x+4,y,true,false,false, false,true);
 
         } else if (arg ==4) {
@@ -138,31 +139,31 @@ public class Labyrinthe {
 
         } else if (arg ==9) {
             /** Tuile de la forme:(x murs, o default)
-             * o o x o o
-             * o x x x o
-             * x x x x x
-             * o x x x o
-             * o o x o o
+             * o o o o o
+             * o x o x o
+             * x x o x x
+             * o x o x o
+             * o o o o o
              */
-            metaTileLineInit(x,y,false,false,true,false,false);
-            metaTileLineInit(x+1,y,false,true,true,true,false);
-            metaTileLineInit(x+2,y,true,true,true,true,true);
-            metaTileLineInit(x+3,y,false,true,true,true,false);
-            metaTileLineInit(x+4,y,false,false,true,false,false);
+            metaTileLineInit(x,y,false,false,false,false,false);
+            metaTileLineInit(x+1,y,false,false,true,true,false);
+            metaTileLineInit(x+2,y,true,true,false,true,true);
+            metaTileLineInit(x+3,y,false,true,false,true,false);
+            metaTileLineInit(x+4,y,false,false,false,false,false);
 
         } else if (arg ==10) {
             /** Tuile de la forme:(x murs, o default)
-             * o o x o o
+             * o o o o o
              * o x x x o
-             * x x x x x
              * o x x x o
-             * o o x o o
+             * o x x x o
+             * o o o o o
              */
-            metaTileLineInit(x,y,false,false,true,false,false);
+            metaTileLineInit(x,y,false,false,false,false,false);
             metaTileLineInit(x+1,y,false,true,true,true,false);
-            metaTileLineInit(x+2,y,true,true,true,true,true);
+            metaTileLineInit(x+2,y,false,true,true,true,false);
             metaTileLineInit(x+3,y,false,true,true,true,false);
-            metaTileLineInit(x+4,y,false,false,true,false,false);
+            metaTileLineInit(x+4,y,false,false,false,false,false);
 
         } else if (arg ==11) {
             /** Tuile de la forme:(x murs, o default)
@@ -211,6 +212,41 @@ public class Labyrinthe {
             } else {
                 cases[x][y+i] = new CaseDefaut(x,y+i);
             }
+        }
+    }
+
+    public void randomSpecialTilesinit(Case cases[][], int amount){
+
+        int x,y;
+        Random r = new Random();
+        x = r.nextInt(getNBCASES());
+        y = r.nextInt(getNBCASES());
+
+        for (int i =0; i<amount;i++){
+
+            while (!outOfBounds(x,y)&&(!cases[x][y].isSolid())){
+                x = r.nextInt(getNBCASES());
+                y = r.nextInt(getNBCASES());
+            }
+
+            if (i==0){
+                setCase(new CaseTresor(x,y),x,y);
+            } else {
+                setCase(randomCase(r.nextInt(3),x,y),x,y);
+            }
+
+        }
+
+    }
+
+
+    private Case randomCase(int n, int x, int y){
+        if (n==0){
+            return new CasePassage(x,y);
+        } else if (n==1) {
+            return new CasePiege(x, y);
+        } else {
+            return new CaseMagique(x,y);
         }
     }
 
