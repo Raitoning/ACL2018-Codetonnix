@@ -1,5 +1,7 @@
 package model.cases;
 
+import model.Heros;
+
 public class CaseDefaut extends Case{
 
     public CaseDefaut(int x, int y){
@@ -7,7 +9,7 @@ public class CaseDefaut extends Case{
     }
 
     @Override
-    public void action() {
+    public void action(Heros h) {
 
     }
 

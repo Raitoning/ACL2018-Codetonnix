@@ -1,5 +1,7 @@
 package model.cases;
 
+import model.Heros;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 
@@ -10,7 +12,7 @@ public class CaseMur extends Case{
     }
 
     @Override
-    public void action() {
+    public void action(Heros h) {
 
     }
 
