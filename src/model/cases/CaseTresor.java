@@ -18,4 +18,8 @@ public class CaseTresor extends Case{
     public String toString() {
         return "5";
     }
+
+    public boolean hasAction(){
+        return true;
+    }
 }

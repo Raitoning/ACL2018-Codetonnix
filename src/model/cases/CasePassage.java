@@ -2,6 +2,8 @@ package model.cases;
 
 import model.Heros;
 
+import java.util.Random;
+
 public class CasePassage extends Case {
 
     private CasePassage casePassage;
@@ -19,13 +21,18 @@ public class CasePassage extends Case {
     @Override
     public void action(Heros h) {
         //Téléporte le joueur
-        int x = (int)(Math.random()*50);
-        int y = (int)(Math.random()*50);
-        h.setPos(x,y);
+        Random random = new Random();
+        int x = random.nextInt(49);
+        int y = random.nextInt(49);
+        h.setPos(x*20,y*20);
     }
 
     @Override
     public String toString() {
         return "3";
+    }
+
+    public boolean hasAction(){
+        return true;
     }
 }
