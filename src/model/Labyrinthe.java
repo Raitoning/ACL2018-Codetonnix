@@ -16,7 +16,7 @@ public class Labyrinthe {
 
         setGeneration(cases, exemple);
 
-        System.out.println(this); //affichage du labyrinthe généré
+        //System.out.println(this); //affichage du labyrinthe généré
     }
 
     public void generer(File f){
