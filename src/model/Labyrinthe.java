@@ -14,12 +14,7 @@ public class Labyrinthe {
 
         cases = new Case[NBCASES][NBCASES];
 
-        Random r= new Random();
-        for (int i=0;i<cases.length;i+=5){
-            for (int j =0;j<cases[0].length;j+=5) {
-                metaTilesInit(r.nextInt(11)+1,i,j);
-            }
-        }
+        setGeneration(cases, exemple);
 
         System.out.println(this); //affichage du labyrinthe généré
     }
@@ -219,6 +214,17 @@ public class Labyrinthe {
         }
     }
 
+    public void setCase(Case c, int x, int y) {
+        if (!outOfBounds(x,y))
+            this.cases[x][y] = c;
+        else
+            System.out.println("Change not Possible");
+    }
+
+    private boolean outOfBounds(int x, int y){
+        return (x>cases.length||y>cases[0].length);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -231,11 +237,50 @@ public class Labyrinthe {
         return sb.toString();
     }
 
+    private void randomGeneration (Case cases[][]){
+        Random r= new Random();
+        for (int i=0;i<cases.length;i+=5){
+            for (int j =0;j<cases[0].length;j+=5) {
+                metaTilesInit(r.nextInt(11)+1,i,j);
+            }
+        }
+
+    }
+
     public Case[][] getCases() {
         return cases;
     }
 
+    public void setGeneration(Case cases[][], int... metatiles){
+        Random r= new Random();
+        int y=0;
+        for (int i=0;i<cases.length;i+=5){
+            for (int j =0;j<cases[0].length;j+=5) {
+                if (y<metatiles.length) {
+                    metaTilesInit(metatiles[y], i, j);
+                    y+=1;
+                } else {
+                    metaTilesInit(r.nextInt(11)+1,i,j);
+                }
+            }
+        }
+    }
+
+    private static final int[] exemple = {
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 3, 4, 5, 6, 7, 8, 9,10, 1,
+            1, 6, 7, 8,10, 9,11, 7, 5, 1,
+            1, 9,10,11, 1, 2, 3, 4, 5, 1,
+            1, 7, 2, 3, 7, 4, 2, 5, 9, 1,
+            1, 3, 7, 4, 3, 5, 5, 6,10, 1,
+            1, 2, 1, 4, 1, 1,10,11,12, 1,
+            1, 6, 3, 4, 7, 9,10, 1,12, 1,
+            1, 1, 2, 5, 6, 8,11,12,10, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }; //50x50 cases
+
+
     public int getNBCASES() {
         return NBCASES;
     }
+
 }
