@@ -59,7 +59,6 @@ public class Jeu implements Game {
             heros.deplacer(commande, labyrinthe);
         }else if ((labyrinthe.getCases()[heros.getPosX() / 20 ][heros.getPosY() / 20].hasAction())){
 			labyrinthe.getCases()[heros.getPosX() / 20 ][heros.getPosY() / 20].action(heros);
-			System.out.println(heros.getPtsVie());
 		}
 
 	}

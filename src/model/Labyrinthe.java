@@ -224,7 +224,7 @@ public class Labyrinthe {
 
         for (int i =0; i<amount;i++){
 
-            while (!outOfBounds(x,y)&&(!cases[x][y].isSolid())){
+            while (!outOfBounds(x,y)&&(!cases[x][y].toString().equals("1"))&&(!cases[x][y].hasAction())){
                 x = r.nextInt(getNBCASES());
                 y = r.nextInt(getNBCASES());
             }
@@ -242,12 +242,26 @@ public class Labyrinthe {
 
     private Case randomCase(int n, int x, int y){
         if (n==0){
-            return new CasePassage(x,y);
+            return dualPassage(new CasePassage(x,y));
         } else if (n==1) {
             return new CasePiege(x, y);
         } else {
             return new CaseMagique(x,y);
         }
+    }
+
+    private CasePassage dualPassage(CasePassage p){
+        Random r = new Random();
+        int x = r.nextInt(getNBCASES());
+        int y = r.nextInt(getNBCASES());
+
+        while (!outOfBounds(x,y)&&(!cases[x][y].toString().equals("1"))){
+            x = r.nextInt(getNBCASES());
+            y = r.nextInt(getNBCASES());
+        }
+
+        setCase(new CasePassage(x,y,p),x,y);
+        return p;
     }
 
     public void setCase(Case c, int x, int y) {

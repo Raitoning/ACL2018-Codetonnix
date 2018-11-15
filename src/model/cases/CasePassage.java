@@ -6,16 +6,24 @@ import java.util.Random;
 
 public class CasePassage extends Case {
 
-    private CasePassage casePassage;
+    private CasePassage link;
 
     public CasePassage(int x, int y){
         super(x,y);
-        casePassage = null;
     }
 
-    public CasePassage(int x, int y, CasePassage c){
-        super(x,y);
-        casePassage = c;
+    public CasePassage(int x, int y, CasePassage link) {
+        super(x, y);
+        this.link = link;
+        link.link(this);
+    }
+
+    public void link(CasePassage link) {
+        this.link = link;
+    }
+
+    public CasePassage getLink() {
+        return link;
     }
 
     @Override
