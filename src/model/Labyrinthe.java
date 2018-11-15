@@ -224,7 +224,7 @@ public class Labyrinthe {
 
         for (int i =0; i<amount;i++){
 
-            while (!outOfBounds(x,y)&&(!cases[x][y].toString().equals("1"))&&(!cases[x][y].hasAction())){
+            while (!outOfBounds(x,y)&&(!cases[x][y].toString().equals("0"))){
                 x = r.nextInt(getNBCASES());
                 y = r.nextInt(getNBCASES());
             }
@@ -255,7 +255,7 @@ public class Labyrinthe {
         int x = r.nextInt(getNBCASES());
         int y = r.nextInt(getNBCASES());
 
-        while (!outOfBounds(x,y)&&(!cases[x][y].toString().equals("1"))){
+        while (!outOfBounds(x,y)&&(!cases[x][y].toString().equals("0"))){
             x = r.nextInt(getNBCASES());
             y = r.nextInt(getNBCASES());
         }
