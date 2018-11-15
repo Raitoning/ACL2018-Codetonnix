@@ -4,8 +4,16 @@ import model.Heros;
 
 public class CasePassage extends Case {
 
+    private CasePassage casePassage;
+
     public CasePassage(int x, int y){
         super(x,y);
+        casePassage = null;
+    }
+
+    public CasePassage(int x, int y, CasePassage c){
+        super(x,y);
+        casePassage = c;
     }
 
     @Override
