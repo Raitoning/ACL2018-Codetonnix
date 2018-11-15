@@ -16,5 +16,8 @@ public class CasePiege extends Case{
         return true;
     }
 
-
+    @Override
+    public String toString() {
+        return "4";
+    }
 }

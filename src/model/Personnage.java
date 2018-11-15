@@ -56,4 +56,20 @@ public abstract class Personnage {
     public int getPtsVie() {
         return ptsVie;
     }
+
+    public void repostion(Labyrinthe l, int posx ,int posy){
+
+        int x = posx;
+        int y = posy;
+
+        while (l.getCases()[x/20][y/20].isSolid()){
+            y=+20;
+            if(l.getCases()[x/20][y/20].isSolid())
+                x=+20;
+        }
+
+        this.posX = x;
+        this.posY = y;
+
+    }
 }

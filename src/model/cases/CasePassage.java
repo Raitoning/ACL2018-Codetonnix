@@ -13,4 +13,8 @@ public class CasePassage extends Case {
 
     }
 
+    @Override
+    public String toString() {
+        return "3";
+    }
 }

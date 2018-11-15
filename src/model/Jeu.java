@@ -39,6 +39,8 @@ public class Jeu implements Game {
 		}
 		this.heros = heros;
 		this.labyrinthe = new Labyrinthe();
+
+		heros.repostion(labyrinthe,(labyrinthe.getNBCASES())*(10),0);
 	}
 
     public Heros getHeros() {

@@ -11,4 +11,9 @@ public class CaseTresor extends Case{
 
         //met fin au jeu
     }
+
+    @Override
+    public String toString() {
+        return "5";
+    }
 }

@@ -31,6 +31,11 @@ public class LabyrinthePainter implements GamePainter {
             for(int j = 0; j< this.jeu.getLabyrinthe().getCases()[0].length; j++ ){
                 if(this.jeu.getLabyrinthe().getCases()[i][j].toString() == "0") crayon.drawImage(images.getTableauPng()[0],i*TAILLECASE,j*TAILLECASE, null);
                 if(this.jeu.getLabyrinthe().getCases()[i][j].toString() == "1") crayon.drawImage(images.getTableauPng()[1],i*TAILLECASE,j*TAILLECASE, null);
+
+                if(this.jeu.getLabyrinthe().getCases()[i][j].toString() == "2") crayon.drawImage(images.getTableauPng()[3],i*TAILLECASE,j*TAILLECASE, null);
+                if(this.jeu.getLabyrinthe().getCases()[i][j].toString() == "3") crayon.drawImage(images.getTableauPng()[4],i*TAILLECASE,j*TAILLECASE, null);
+                if(this.jeu.getLabyrinthe().getCases()[i][j].toString() == "4") crayon.drawImage(images.getTableauPng()[5],i*TAILLECASE,j*TAILLECASE, null);
+                if(this.jeu.getLabyrinthe().getCases()[i][j].toString() == "5") crayon.drawImage(images.getTableauPng()[6],i*TAILLECASE,j*TAILLECASE, null);
             }
         }
         Heros heros = jeu.getHeros();
