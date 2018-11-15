@@ -16,7 +16,7 @@ public class Labyrinthe {
 
         randomGeneration(cases);
 
-        randomSpecialTilesinit(cases,7);
+        randomSpecialTilesinit(cases,30);
         //System.out.println(this); //affichage du labyrinthe généré
     }
 

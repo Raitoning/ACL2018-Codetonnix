@@ -29,10 +29,7 @@ public class CasePassage extends Case {
     @Override
     public void action(Heros h) {
         //Téléporte le joueur
-        Random random = new Random();
-        int x = random.nextInt(49);
-        int y = random.nextInt(49);
-        h.setPos(x*20,y*20);
+        h.setPos(link.getPosX()*20,link.getPosY()*20);
     }
 
     @Override

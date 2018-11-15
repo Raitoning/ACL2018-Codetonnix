@@ -21,4 +21,11 @@ public abstract class Case {
         return false;
     }
 
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
 }
