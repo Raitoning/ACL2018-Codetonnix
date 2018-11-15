@@ -9,12 +9,14 @@ public abstract class Personnage {
     protected int posX;
     protected int posY;
     protected int ptsVie;
+    protected boolean invincible;
 
 
     public Personnage(int posX, int posY, int ptsVie) {
         this.posX = posX;
         this.posY = posY;
         this.ptsVie = ptsVie;
+        this.invincible = false;
     }
 
     protected void deplacer(Cmd input, Labyrinthe labyrinthe){
@@ -53,6 +55,19 @@ public abstract class Personnage {
         return posY;
     }
 
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
+    public void setPos(int posX, int posY){
+        this.posX = posX;
+        this.posY = posY;
+    }
+
     public int getPtsVie() {
         return ptsVie;
     }
@@ -71,5 +86,17 @@ public abstract class Personnage {
         this.posX = x;
         this.posY = y;
 
+    }
+
+    public void setPtsVie(int ptsVie) {
+        this.ptsVie = ptsVie;
+    }
+
+    public boolean isInvincible() {
+        return invincible;
+    }
+
+    public void setInvincible(boolean invincible) {
+        this.invincible = invincible;
     }
 }

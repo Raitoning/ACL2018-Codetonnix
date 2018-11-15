@@ -20,4 +20,6 @@ public class Heros extends Personnage {
     void attaquer(Cmd input) {
 
     }
+
+
 }
