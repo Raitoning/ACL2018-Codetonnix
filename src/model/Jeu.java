@@ -58,7 +58,7 @@ public class Jeu implements Game {
 		if (commande!=Cmd.IDLE) {
             heros.deplacer(commande, labyrinthe);
         }else if ((labyrinthe.getCases()[heros.getPosX() / 20 ][heros.getPosY() / 20].hasAction())){
-			labyrinthe.getCases()[heros.getPosX() / 20 ][heros.getPosY() / 20].action();
+			labyrinthe.getCases()[heros.getPosX() / 20 ][heros.getPosY() / 20].action(heros);
 		}
 
 	}
