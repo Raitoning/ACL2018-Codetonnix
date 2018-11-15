@@ -21,7 +21,7 @@ public class Labyrinthe {
             }
         }
 
-        System.out.println(this); //affichage du labyrinthe généré
+        //System.out.println(this); //affichage du labyrinthe généré
     }
 
     public void generer(File f){
@@ -233,6 +233,12 @@ public class Labyrinthe {
 
     public Case[][] getCases() {
         return cases;
+    }
+
+    public void setCases(int x, int y, Case c){
+        if(this.cases != null){
+            cases[x][y] = c;
+        }
     }
 
     public int getNBCASES() {
