@@ -192,7 +192,20 @@ public class Labyrinthe {
             metaTileLineInit(x+2,y,true,false,false,true,true);
             metaTileLineInit(x+3,y,false,true,false,false,false);
             metaTileLineInit(x+4,y,false,false,true,false,true);
-        } else {
+        } else if (arg ==13) {
+        /** Tuile de la forme:(x murs, o default)
+         * o o x o x
+         * o x x o o
+         * o x o x x
+         * o x o o o
+         * o o x o x
+         */
+        metaTileLineInit(x,y,false,false,true,false,true);
+        metaTileLineInit(x+1,y,false,true,true,false,false);
+        metaTileLineInit(x+2,y,false,true,false,true,true);
+        metaTileLineInit(x+3,y,false,true,false,false,false);
+        metaTileLineInit(x+4,y,false,false,true,false,true);
+    } else {
             System.out.println("Unknown argument: '"+arg+"'");
         }
 
@@ -291,7 +304,7 @@ public class Labyrinthe {
         Random r= new Random();
         for (int i=0;i<cases.length;i+=5){
             for (int j =0;j<cases[0].length;j+=5) {
-                metaTilesInit(r.nextInt(11)+1,i,j);
+                metaTilesInit(r.nextInt(12)+1,i,j);
             }
         }
 
