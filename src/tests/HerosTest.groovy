@@ -1,10 +1,9 @@
 package tests
 
-import engine.Cmd
-import model.Heros
-import model.Labyrinthe
-import model.cases.CaseDefaut
-import model.cases.CaseMur
+import assets.scripts.Heros
+import assets.scripts.Labyrinthe
+import assets.scripts.cases.CaseDefaut
+import assets.scripts.cases.CaseMur
 import org.junit.Before
 import org.junit.Test
 import static org.junit.Assert.*
