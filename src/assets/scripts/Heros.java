@@ -9,6 +9,8 @@ import engine.gameobject.component.Camera;
 import engine.gameobject.component.SpriteRenderer;
 import engine.input.Input;
 
+import java.awt.event.KeyEvent;
+
 public class Heros extends Personnage {
 
     private BoxCollider2D collider2D;
@@ -19,12 +21,22 @@ public class Heros extends Personnage {
     private float warpedTimer;
     private float unableToWarpTime = 1f;
 
+    private boolean isDashing ;
+    private boolean canDash;
+    private float dashAttackTime;
+    private float dashAttackTimer = 0.15f;
+    private float dashAttackCooldown = 0.9f;
+
     private GameObject cameraObject;
     private Camera camera;
     private Labyrinthe labyrinthe;
 
     public Heros(int posX, int posY, int ptsVie) {
         super(posX, posY, ptsVie);
+
+        canDash = true;
+        isDashing = false;
+        dashAttackTime =0f;
 
         transform.scale().setX(0.5f);
         transform.scale().setY(0.5f);
@@ -72,9 +84,45 @@ public class Heros extends Personnage {
                 }
             }
 
-            transform.position().setX(transform.position().getX() + Input.getAxis("Horizontal") * 5f * Time.deltaTime);
-            transform.position().setY(transform.position().getY() + Input.getAxis("Vertical") * 5f * Time.deltaTime);
 
+            if(Input.getInstance ().getKey(Integer.valueOf(KeyEvent.VK_SPACE))){
+                attaquer();
+            }
+
+            if (!canDash) {
+
+                dashAttackTime += Time.deltaTime;
+
+                if (dashAttackTime >= dashAttackCooldown) {
+
+                    dashAttackTime = 0f;
+                    canDash = true;
+                }
+
+            }
+
+            if (isDashing){
+
+                dashAttackTime += Time.deltaTime;
+                if (dashAttackTime >= dashAttackTimer) {
+
+                    dashAttackTime = 0f;
+                    isDashing = false;
+                    canDash = false;
+
+
+                }
+
+                transform.position().setX(transform.position().getX() + Input.getAxis("Horizontal") * 10f * Time.deltaTime);
+                transform.position().setY(transform.position().getY() + Input.getAxis("Vertical") * 10f * Time.deltaTime);
+
+
+            }
+
+            if (!isDashing) {
+                transform.position().setX(transform.position().getX() + Input.getAxis("Horizontal") * 5f * Time.deltaTime);
+                transform.position().setY(transform.position().getY() + Input.getAxis("Vertical") * 5f * Time.deltaTime);
+            }
             cameraObject.getTransform().position().setX(Mathf.clamp(transform.position().getX(), ((camera.getOrthographicSize() * Engine.getInstance().getRenderer().getAspectRatio()) / 2f) - 0.5f, labyrinthe.getNBCASES() + 0.5f - camera.getOrthographicSize()));
 
             cameraObject.getTransform().position().setY(Mathf.clamp(transform.position().getY(), camera.getOrthographicSize() / 2f, labyrinthe.getNBCASES() - (camera.getOrthographicSize() / 2f)) - 0.5f);
@@ -102,8 +150,13 @@ public class Heros extends Personnage {
         transform.position().setY(labyrinthe.getNBCASES() / 2);
     }
 
-    //    @Override
-//    void attaquer(Cmd input) {
-//
-//    }
+
+    private void attaquer() {
+
+        if (canDash&&!isDashing){
+            isDashing = true;
+            invincible = true;
+        }
+
+    }
 }
