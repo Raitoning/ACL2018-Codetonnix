@@ -4,6 +4,7 @@ import assets.scripts.Fantome;
 import assets.scripts.Heros;
 import assets.scripts.Labyrinthe;
 import assets.scripts.Monstre;
+import engine.exception.GameObjectNotFoundException;
 import engine.gameobject.GameObject;
 
 import java.util.ArrayList;
@@ -17,8 +18,8 @@ import java.util.Random;
  * </p>
  *
  * @author  Raitoning
- * @version 2018-11-14
- * @since   2018-11-14
+ * @version 2018.11.26
+ * @since   2018.11.14
  */
 public class Game {
 
@@ -45,16 +46,17 @@ public class Game {
 
         gameObjects = new ArrayList<>();
 
+        gameObjects.add(new Heros(0,0, 10));
+
         gameObjects.add(new Labyrinthe());
-        gameObjects.add(new Heros(0,0, 100));
         ((Heros)findGameObjectByName("Player")).setLabyrinthe((Labyrinthe)findGameObjectByName("Labyrinthe"));
 
         Random random = new Random();
 
         for (int i = 0; i < 5; i++) {
 
-            gameObjects.add(new Monstre(random.nextInt(50), random.nextInt(50), 100));
-            gameObjects.add(new Fantome(random.nextInt(50), random.nextInt(50), 100));
+            gameObjects.add(new Monstre(random.nextInt(50), random.nextInt(50), 3));
+            gameObjects.add(new Fantome(random.nextInt(50), random.nextInt(50), 2));
         }
     }
 
@@ -69,6 +71,11 @@ public class Game {
         }
     }
 
+    /** Return a GameObject given it's name if it exists, or throws an UnknownGameObjectException otherwise.
+     *
+     * @param name The name of the GameObject to search.
+     * @return The first GameObject with name, or null if it doesn't exists and throws an UnknownGameObjectException Exception.
+     */
     public GameObject findGameObjectByName(String name) {
 
         for (int i = 0; i < gameObjects.size(); i++) {
@@ -79,6 +86,13 @@ public class Game {
             }
         }
 
+        try {
+
+            throw new GameObjectNotFoundException(name);
+        } catch (GameObjectNotFoundException e) {
+
+            e.printStackTrace();
+        }
         return null;
     }
 }

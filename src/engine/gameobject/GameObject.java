@@ -1,5 +1,6 @@
 package engine.gameobject;
 
+import engine.Engine;
 import engine.Vector3;
 import engine.gameobject.component.Collider;
 import engine.gameobject.component.Component;
@@ -15,8 +16,8 @@ import java.util.ArrayList;
  * <b>Note:</b> <a href="https://docs.unity3d.com/ScriptReference/GameObject.html">https://docs.unity3d.com/ScriptReference/GameObject.html</a>
  *
  * @author  Raitoning
- * @version 2018-11-14
- * @since   2018-11-14
+ * @version 2018.11.26
+ * @since   2018.11.14
  */
 public class GameObject {
 
@@ -159,10 +160,11 @@ public class GameObject {
      *
      * @param name The name of the GameObject.
      * @return The GameObject if found, null otherwise.
+     * @deprecated STILL EXPERIMENTAL, DO NOT USE IT.
      */
     public static GameObject findByName(String name) {
 
-        return SceneManager.getInstance().getActiveScene().getGameObjectByName(name);
+        return Engine.getInstance().getGame().findGameObjectByName(name);
     }
 
     /** Removes a GameObject.

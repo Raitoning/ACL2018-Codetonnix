@@ -9,7 +9,7 @@ import java.util.Random;
 public class Labyrinthe extends GameObject {
 
     private Case[][] cases;
-    private final int NBCASES = 100;
+    private final int NBCASES = 50;
 
     public Labyrinthe(){
 
