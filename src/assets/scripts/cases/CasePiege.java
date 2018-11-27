@@ -27,8 +27,7 @@ public class CasePiege extends Case {
     @Override
     public void action(Heros h) {
         //Blesse le Joueur
-        h.setPtsVie(h.getPtsVie()-1);
-        h.setInvincible(true);
+        h.recieveDamage(1);
         spriteRenderer.setName("trap");
     }
 

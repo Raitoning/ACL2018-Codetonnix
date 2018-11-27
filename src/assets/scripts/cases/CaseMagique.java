@@ -1,9 +1,12 @@
 package assets.scripts.cases;
 
 import assets.scripts.Heros;
+import engine.Time;
 import engine.gameobject.component.BoxCollider2D;
 import engine.gameobject.component.Collider;
 import engine.gameobject.component.SpriteRenderer;
+
+import java.util.Random;
 
 public class CaseMagique extends Case{
 
@@ -28,8 +31,17 @@ public class CaseMagique extends Case{
     public void action(Heros h) {
         //Fait quelquechose
         if(!active){
-            h.setPtsVie(h.getPtsVie()+1);
-            this.active = true;
+            Random r = new Random();
+            int n = r.nextInt(30);
+
+            if (n< 10 ) {
+                h.magicHeal(r.nextInt(3)+1);//Heal me
+            } else if (n<20){
+                h.magicBuff(true); //Damage Boost
+            } else {
+                h.magicBuff(false);//Speed Boost
+            }
+            active = true;
         }
     }
 

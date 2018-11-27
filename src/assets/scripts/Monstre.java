@@ -43,6 +43,19 @@ public class Monstre extends Personnage {
     @Override
     public void update() {
 
+        if (ptsVie>0){
+
+        if(invincible) {
+
+            invincibleTimer += Time.deltaTime;
+
+            if (invincibleTimer >= invincibleTime) {
+
+                invincibleTimer = 0f;
+                invincible = false;
+            }
+        }
+
         if(randomMoveTimer >= randomMoveTime) {
 
             randomMoveTimer = 0f;
@@ -60,6 +73,10 @@ public class Monstre extends Personnage {
 
         transform.position().setX(transform.position().getX() + randomX * 5f * Time.deltaTime);
         transform.position().setY(transform.position().getY() + randomY * 5f * Time.deltaTime);
+        } else {
+            transform.position().setX(-500);
+            transform.position().setY(-500);
+        }
     }
 
     @Override

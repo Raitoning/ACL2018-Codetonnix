@@ -30,13 +30,34 @@ public class Fantome extends Personnage {
     @Override
     public void update() {
 
+        if (ptsVie>0){
+
+        if(invincible) {
+
+            invincibleTimer += Time.deltaTime;
+
+            if (invincibleTimer >= invincibleTime) {
+
+                invincibleTimer = 0f;
+                invincible = false;
+            }
+        }
+
         if(heros == null) {
 
             heros = (Heros)findByName("Player");
         } else {
 
-            transform.position().setX(Mathf.lerp(transform.position().getX(), heros.getTransform().position().getX(), Time.deltaTime));
-            transform.position().setY(Mathf.lerp(transform.position().getY(), heros.getTransform().position().getY(), Time.deltaTime));
+            transform.position().setX(Mathf.lerp(transform.position().getX(),
+                    heros.getTransform().position().getX(), Time.deltaTime));
+            transform.position().setY(Mathf.lerp(transform.position().getY(),
+                    heros.getTransform().position().getY(), Time.deltaTime));
+        }
+
+        } else {
+            //TODO: Upgrade
+            transform.position().setX(-500);
+            transform.position().setY(-500);
         }
     }
 

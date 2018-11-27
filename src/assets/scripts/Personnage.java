@@ -9,6 +9,8 @@ public abstract class Personnage extends GameObject {
     protected int ptsVie;
     protected boolean invincible;
     protected boolean warped = false;
+    protected float invincibleTimer;
+    protected float invincibleTime = 0.2f;
 
     public Personnage(int posX, int posY, int ptsVie) {
 
@@ -65,6 +67,15 @@ public abstract class Personnage extends GameObject {
         this.posX = x;
         this.posY = y;
 
+    }
+
+    public void recieveDamage(int damage){
+        if(!invincible) {
+
+            ptsVie -= damage;
+            invincible = true;
+
+        }
     }
 
     public void warp(int x, int y) {
