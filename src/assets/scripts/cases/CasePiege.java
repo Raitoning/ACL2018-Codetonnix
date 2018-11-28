@@ -7,16 +7,17 @@ import engine.gameobject.component.SpriteRenderer;
 
 public class CasePiege extends Case {
 
-    private boolean active;
     private BoxCollider2D trigger;
+    private SpriteRenderer spriteRenderer;
 
     public CasePiege(int x, int y){
         super(x,y);
-        active = false;
 
         transform.position().setZ(1f);
 
-        components.add(new SpriteRenderer("trap", this));
+        spriteRenderer = new SpriteRenderer("floor", this);
+
+        components.add(spriteRenderer);
 
         trigger = new BoxCollider2D("World", this);
         trigger.setTrigger(true);
@@ -26,9 +27,8 @@ public class CasePiege extends Case {
     @Override
     public void action(Heros h) {
         //Blesse le Joueur
-        h.setPtsVie(h.getPtsVie()-1);
-        h.setInvincible(true);
-        active = true;
+        h.recieveDamage(1);
+        spriteRenderer.setName("trap");
     }
 
     @Override

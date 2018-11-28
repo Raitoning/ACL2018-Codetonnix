@@ -14,8 +14,8 @@ import java.io.IOException;
  * </p>
  *
  * @author  Raitoning
- * @version 2018-11-14
- * @since   2018-11-14
+ * @version 2018.11.14
+ * @since   2018.11.14
  */
 public class SpriteReference {
 
@@ -36,6 +36,12 @@ public class SpriteReference {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public SpriteReference(String name, BufferedImage sprite) {
+
+        this.name = name;
+        this.sprite = sprite;
     }
 
     /** Get the name of the sprite.

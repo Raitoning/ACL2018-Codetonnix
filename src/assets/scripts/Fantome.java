@@ -1,12 +1,15 @@
 package assets.scripts;
 
+import engine.Mathf;
+import engine.Time;
 import engine.gameobject.component.BoxCollider2D;
+import engine.gameobject.component.Collider;
 import engine.gameobject.component.SpriteRenderer;
 
 public class Fantome extends Personnage {
 
     private BoxCollider2D trigger;
-    private BoxCollider2D collider;
+    private Heros heros;
 
     public Fantome(int x, int y, int sante) {
 
@@ -19,11 +22,43 @@ public class Fantome extends Personnage {
 
         addComponent(new SpriteRenderer("ghost", this));
 
-        collider = new BoxCollider2D("Monsters", this);
-        addComponent(collider);
+        trigger = new BoxCollider2D("Monsters", this);
+        trigger.setTrigger(true);
+        addComponent(trigger);
+    }
 
-//        trigger = new BoxCollider2D("Monsters", this);
-//        addComponent(trigger);
+    @Override
+    public void update() {
+
+        if (ptsVie>0){
+
+        if(invincible) {
+
+            invincibleTimer += Time.deltaTime;
+
+            if (invincibleTimer >= invincibleTime) {
+
+                invincibleTimer = 0f;
+                invincible = false;
+            }
+        }
+
+        if(heros == null) {
+
+            heros = (Heros)findByName("Player");
+        } else {
+
+            transform.position().setX(Mathf.lerp(transform.position().getX(),
+                    heros.getTransform().position().getX(), Time.deltaTime));
+            transform.position().setY(Mathf.lerp(transform.position().getY(),
+                    heros.getTransform().position().getY(), Time.deltaTime));
+        }
+
+        } else {
+            //TODO: Upgrade
+            transform.position().setX(-500);
+            transform.position().setY(-500);
+        }
     }
 
     @Override
@@ -31,6 +66,5 @@ public class Fantome extends Personnage {
         super.destroy();
 
         trigger.destroy();
-        collider.destroy();
     }
 }
