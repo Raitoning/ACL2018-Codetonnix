@@ -3,6 +3,7 @@ package assets.scripts.cases;
 import assets.scripts.Heros;
 import engine.gameobject.component.SpriteRenderer;
 
+// FIXME: Impossible de détruire le GameObject entièrement.
 public class CaseDefaut extends Case{
 
     public CaseDefaut(int x, int y){

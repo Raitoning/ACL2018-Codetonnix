@@ -62,4 +62,12 @@ public class CasePassage extends Case {
     public boolean hasAction(){
         return true;
     }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+
+        trigger = null;
+        link = null;
+    }
 }

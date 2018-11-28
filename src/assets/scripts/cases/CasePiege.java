@@ -49,4 +49,15 @@ public class CasePiege extends Case {
     public String toString() {
         return "4";
     }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+
+        trigger.destroy();
+        trigger = null;
+
+        spriteRenderer.destroy();
+        spriteRenderer = null;
+    }
 }

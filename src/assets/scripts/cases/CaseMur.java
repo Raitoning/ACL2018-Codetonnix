@@ -36,4 +36,11 @@ public class CaseMur extends Case {
         return true;
     }
 
+    @Override
+    public void destroy() {
+        super.destroy();
+
+        collider.destroy();
+        collider = null;
+    }
 }

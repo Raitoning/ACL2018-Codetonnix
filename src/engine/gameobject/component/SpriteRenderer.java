@@ -62,7 +62,6 @@ public class SpriteRenderer implements Component {
 
     /** Destroy this component.
      *
-     * @deprecated STILL EXPERIMENTAL, DO NOT USE IT.
      */
     @Override
     public void destroy() {

@@ -2,6 +2,7 @@ package engine.gameobject.component;
 
 import engine.Engine;
 import engine.gameobject.GameObject;
+import engine.physics.Physics;
 
 public abstract class Collider implements Component {
 
@@ -55,6 +56,7 @@ public abstract class Collider implements Component {
     @Override
     public void destroy() {
 
-        Engine.getInstance().getPhysics().removeCollider(this);
+        Physics.getInstance().removeCollider(this);
+        gameObject = null;
     }
 }

@@ -10,6 +10,7 @@ import engine.gameobject.component.Camera;
 import engine.gameobject.component.Collider;
 import engine.gameobject.component.SpriteRenderer;
 import engine.input.Input;
+import engine.scene.SceneManager;
 
 import java.awt.event.KeyEvent;
 
@@ -70,7 +71,8 @@ public class Heros extends Personnage {
         minimap = new Camera(15f, 0f, 2f, cameraObject);
         minimap.setMinRenderArea(new Vector2(0.75f, 0.75f));
         minimap.setRenderPriority(-2);
-        camera.getGameObject().addComponent(camera);
+        cameraObject.addComponent(camera);
+        cameraObject.addComponent(minimap);
     }
 
     @Override
@@ -126,7 +128,6 @@ public class Heros extends Personnage {
                     dashAttackTime = 0f;
                     canDash = true;
                 }
-
             }
 
             if (isDashing) {
@@ -140,10 +141,7 @@ public class Heros extends Personnage {
                     canDash = false;
                     speed = 5f;
                 }
-
             }
-
-
 
             transform.position().setX(transform.position().getX() + Input.getAxis("Horizontal") * speed * Time.deltaTime);
             transform.position().setY(transform.position().getY() + Input.getAxis("Vertical") * speed * Time.deltaTime);
@@ -153,8 +151,14 @@ public class Heros extends Personnage {
 
             cameraObject.getTransform().position().setY(Mathf.clamp(transform.position().getY(), camera.getOrthographicSize() / 2f, labyrinthe.getNBCASES() - (camera.getOrthographicSize() / 2f)) - 0.5f);
         }
-    }
 
+        if(Input.getKey(KeyEvent.VK_SPACE)) {
+
+            cameraObject.destroy();
+            cameraObject = null;
+            SceneManager.getInstance().unloadActiveScene();
+        }
+    }
 
     public void magicHeal(int amount){
         if (ptsVie<10)
@@ -185,7 +189,6 @@ public class Heros extends Personnage {
         }
     }
 
-
     public boolean isAlive() {
 
         return ptsVie > 0;
@@ -198,7 +201,6 @@ public class Heros extends Personnage {
         transform.position().setY(labyrinthe.getNBCASES() / 2);
     }
 
-
     private void attaquer() {
 
         if (canDash&&!isDashing) {
@@ -207,5 +209,13 @@ public class Heros extends Personnage {
             invincible = true;
             speed *= 2;
         }
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+
+        labyrinthe.destroy();
+        labyrinthe = null;
     }
 }

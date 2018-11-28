@@ -104,4 +104,9 @@ public abstract class Personnage extends GameObject {
 
         this.invincible = invincible;
     }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+    }
 }

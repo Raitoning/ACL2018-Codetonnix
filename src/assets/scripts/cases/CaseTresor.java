@@ -44,4 +44,12 @@ public class CaseTresor extends Case{
     public boolean hasAction(){
         return true;
     }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+
+        trigger.destroy();
+        trigger = null;
+    }
 }
