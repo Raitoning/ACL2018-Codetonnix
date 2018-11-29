@@ -161,8 +161,12 @@ public class Heros extends Personnage {
     }
 
     public void magicHeal(int amount){
-        if (ptsVie<10)
-         this.ptsVie += amount;
+        if (ptsVie + amount <= this.ptsVieMax){
+            this.ptsVie += amount;
+        }else{
+            this.ptsVie = this.ptsVieMax;
+        }
+
     }
 
     public void magicBuff(boolean str){

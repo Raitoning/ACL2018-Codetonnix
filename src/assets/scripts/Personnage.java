@@ -7,6 +7,7 @@ public abstract class Personnage extends GameObject {
     protected int posX;
     protected int posY;
     protected int ptsVie;
+    protected int ptsVieMax;
     protected boolean invincible;
     protected boolean warped = false;
     protected float invincibleTimer;
@@ -17,6 +18,7 @@ public abstract class Personnage extends GameObject {
         this.posX = posX;
         this.posY = posY;
         this.ptsVie = ptsVie;
+        this.ptsVieMax = ptsVie;
         this.invincible = false;
 
         transform.position().setX(posX);
