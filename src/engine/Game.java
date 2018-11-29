@@ -32,6 +32,7 @@ public class Game {
     public Game() {
 
         SpriteFactory.getInstance().addSprite("wall", "src/assets/textures/mur.png");
+        SpriteFactory.getInstance().addSprite("wallup", "src/assets/textures/murup.png");
         SpriteFactory.getInstance().addSprite("floor", "src/assets/textures/sol.png");
         SpriteFactory.getInstance().addSprite("heros", "src/assets/textures/heros.png");
         SpriteFactory.getInstance().addSprite("ghost", "src/assets/textures/ghost/down0.png");
