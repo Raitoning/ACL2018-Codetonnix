@@ -40,6 +40,8 @@ public class Game {
         SpriteFactory.getInstance().addSprite("trap", "src/assets/textures/trap.png");
         SpriteFactory.getInstance().addSprite("passage", "src/assets/textures/passage.png");
         SpriteFactory.getInstance().addSprite("treasure", "src/assets/textures/treasure.png");
+        SpriteFactory.getInstance().addSprite("healthBar", "src/assets/textures/healthBar.png");
+        SpriteFactory.getInstance().addSprite("healthBarMax", "src/assets/textures/healthBarMax.png");
 
         Engine.getInstance().getPhysics().addLayer("World");
         Engine.getInstance().getPhysics().addLayer("Player");

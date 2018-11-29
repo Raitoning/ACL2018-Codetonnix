@@ -43,6 +43,7 @@ public class Monstre extends Personnage {
 
     @Override
     public void update() {
+        super.update();
 
         if (ptsVie>0){
 

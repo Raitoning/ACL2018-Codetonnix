@@ -29,6 +29,7 @@ public class Fantome extends Personnage {
 
     @Override
     public void update() {
+        super.update();
 
         if (ptsVie>0){
 

@@ -67,7 +67,7 @@ public class Heros extends Personnage {
         components.add(trigger2D);
 
         cameraObject = new GameObject();
-        camera = new Camera(10f, 0f, 2f, cameraObject);
+        camera = new Camera(10f, -2f, 2f, cameraObject);
         minimap = new Camera(15f, 0f, 2f, cameraObject);
         minimap.setMinRenderArea(new Vector2(0.75f, 0.75f));
         minimap.setRenderPriority(-2);
@@ -77,6 +77,7 @@ public class Heros extends Personnage {
 
     @Override
     public void update() {
+        super.update();
 
         if(isAlive()) {
 
