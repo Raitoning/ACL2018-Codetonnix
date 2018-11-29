@@ -11,6 +11,7 @@ import java.util.Random;
 public class CaseMagique extends Case{
 
     private BoxCollider2D trigger;
+    private SpriteRenderer spriteRenderer;
 
     private boolean active;
 
@@ -20,7 +21,8 @@ public class CaseMagique extends Case{
         transform.position().setZ(1f);
         active = false;
 
-        components.add(new SpriteRenderer("magic", this));
+        spriteRenderer = new SpriteRenderer("magic", this);
+        components.add(spriteRenderer);
 
         trigger = new BoxCollider2D("World", this);
         trigger.setTrigger(true);
@@ -41,6 +43,7 @@ public class CaseMagique extends Case{
             } else {
                 h.magicBuff(false);//Speed Boost
             }
+            spriteRenderer.setName("floor");
             active = true;
         }
     }

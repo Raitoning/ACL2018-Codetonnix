@@ -30,13 +30,13 @@ public class Monstre extends Personnage {
         transform.scale().setX(0.5f);
         transform.scale().setY(0.5f);
 
-        addComponent(new SpriteRenderer("zombie", this));
+        components.add(new SpriteRenderer("zombie", this));
 
-        addComponent(new BoxCollider2D("Monster", this));
+        components.add(new BoxCollider2D("Monsters", this));
 
         trigger = new BoxCollider2D("Monsters", this);
         trigger.setTrigger(true);
-        addComponent(trigger);
+        components.add(trigger);
 
         random = new Random();
     }
@@ -91,5 +91,10 @@ public class Monstre extends Personnage {
         collider = null;
 
         random = null;
+
+        for (int i = 0; i < components.size(); i++) {
+
+            components.get(i).destroy();
+        }
     }
 }
