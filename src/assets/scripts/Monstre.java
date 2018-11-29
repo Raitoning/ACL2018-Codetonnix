@@ -102,9 +102,9 @@ public class Monstre extends Personnage {
 
     private String getAnimation(){
 
-        if (randomX<0.3f){
+        if (randomX<0.3f&&(randomX>randomY)){
             return left+animationID;
-        } else if(randomX>-0.3f){
+        } else if(randomX>-0.3f&&(randomX>randomY)){
             return right+animationID;
         } else if (randomY<-0.1f){
             return down+animationID;
