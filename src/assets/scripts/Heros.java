@@ -219,7 +219,7 @@ public class Heros extends Personnage {
             if (str) {
                 this.strength += 1;
             } else {
-                this.speed = 1.3f;
+                this.speed += 1.3f;
             }
         }
     }
