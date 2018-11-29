@@ -71,6 +71,8 @@ public class Monstre extends Personnage {
                 randomY -= 1f;
             }
 
+
+
             randomMoveTimer += Time.deltaTime;
 
             transform.position().setX(transform.position().getX() + randomX * 5f * Time.deltaTime);
