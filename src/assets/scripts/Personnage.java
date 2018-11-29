@@ -33,11 +33,11 @@ public abstract class Personnage extends GameObject {
         healthBarMaxObject.addComponent(new SpriteRenderer("healthBarMax", healthBarMaxObject));
         healthBarMaxObject.getTransform().scale().setX(1f);
         healthBarMaxObject.getTransform().scale().setY(.1f);
-        healthBarObject = new GameObject();
+
+        healthBarObject = new GameObject(transform.position().getX(), transform.position().getY(), transform.position().getZ());
         healthBarObject.addComponent(new SpriteRenderer("healthBar", healthBarObject));
         healthBarObject.getTransform().scale().setX(1f);
         healthBarObject.getTransform().scale().setY(0.1f);
-
 
         transform.position().setX(posX);
         transform.position().setY(posY);
@@ -141,8 +141,7 @@ public abstract class Personnage extends GameObject {
 
     @Override
     public void destroy() {
-        super.destroy();
-        healthBarObject.destroy();
-        healthBarMaxObject.destroy();
+
+        transform.setPosition(-999f, -999f, -999f);
     }
 }

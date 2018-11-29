@@ -190,7 +190,7 @@ public class Heros extends Personnage {
             transform.position().setY(transform.position().getY() + Input.getAxis("Vertical") * speed * Time.deltaTime);
 
 
-            cameraObject.getTransform().position().setX(Mathf.clamp(transform.position().getX(), ((camera.getOrthographicSize() * Engine.getInstance().getRenderer().getAspectRatio()) / 2f) - 0.5f, labyrinthe.getNBCASES() + 0.5f - camera.getOrthographicSize()));
+            cameraObject.getTransform().position().setX(Mathf.clamp(transform.position().getX(), ((camera.getOrthographicSize() * Engine.getInstance().getRenderer().getAspectRatio()) / 2f) - 0.5f, labyrinthe.getNBCASES() - camera.getOrthographicSize()));
 
             cameraObject.getTransform().position().setY(Mathf.clamp(transform.position().getY(), camera.getOrthographicSize() / 2f, labyrinthe.getNBCASES() - (camera.getOrthographicSize() / 2f)) - 0.5f);
         }

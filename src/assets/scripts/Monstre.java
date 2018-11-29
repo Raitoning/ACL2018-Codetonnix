@@ -82,21 +82,4 @@ public class Monstre extends Personnage {
             destroy();
         }
     }
-
-    @Override
-    public void destroy() {
-        super.destroy();
-
-        trigger.destroy();
-        trigger = null;
-        collider.destroy();
-        collider = null;
-
-        random = null;
-
-        for (int i = 0; i < components.size(); i++) {
-
-            components.get(i).destroy();
-        }
-    }
 }

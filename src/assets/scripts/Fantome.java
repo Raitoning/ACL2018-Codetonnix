@@ -94,12 +94,4 @@ public class Fantome extends Personnage {
 
         return idle+animationID;
     }
-
-    @Override
-    public void destroy() {
-        super.destroy();
-
-        heros = null;
-        trigger.destroy();
-    }
 }

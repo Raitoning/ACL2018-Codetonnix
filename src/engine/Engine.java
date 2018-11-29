@@ -23,7 +23,7 @@ public class Engine {
 
     public static Engine instance;
 
-    private int targetFrameRate = 30;
+    private int targetFrameRate = 60;
     private long startupTime;
     private long frameStartTime;
     private long deltaTime;
@@ -48,7 +48,7 @@ public class Engine {
         input = Input.getInstance();
         physics = Physics.getInstance();
 
-        softwareRenderer = new SoftwareRenderer(1280,720);
+        softwareRenderer = new SoftwareRenderer(852,480);
 
         sceneManager = SceneManager.getInstance();
 
@@ -75,8 +75,8 @@ public class Engine {
                 isRunning = false;
             }
 
-//            game.update();
-            sceneManager.update();
+            game.update();
+//            sceneManager.update();
             physics.update();
 
             if(ecoRenderingMode) {

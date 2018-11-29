@@ -77,7 +77,7 @@ public class SoftwareRenderer {
 
 //        System.out.println("Number of cameras: " + cameras.size());
 //        System.out.println("Number of sprites: " + sprites.size());
-
+//
 //        for (int i = 0; i < sprites.size(); i++) {
 //
 //            System.out.println(sprites.get(i).getGameObject());

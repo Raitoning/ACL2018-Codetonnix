@@ -130,20 +130,20 @@ public class Game {
 
         gameObjects = new ArrayList<>();
 
-        new HelloScene();
+//        new HelloScene();
 
-//        gameObjects.add(new Heros(0,0, 10));
-//
-//        gameObjects.add(new Labyrinthe());
-//        ((Heros)findGameObjectByName("Player")).setLabyrinthe((Labyrinthe)findGameObjectByName("Labyrinthe"));
-//
-//        Random random = new Random();
-//
-//        for (int i = 0; i < 5; i++) {
-//
-//            gameObjects.add(new Monstre(random.nextInt(50), random.nextInt(50), 3));
-//            gameObjects.add(new Fantome(random.nextInt(50), random.nextInt(50), 2));
-//        }
+        gameObjects.add(new Heros(0,0, 10));
+
+        gameObjects.add(new Labyrinthe());
+        ((Heros)findGameObjectByName("Player")).setLabyrinthe((Labyrinthe)findGameObjectByName("Labyrinthe"));
+
+        Random random = new Random();
+
+        for (int i = 0; i < 5; i++) {
+
+            gameObjects.add(new Monstre(random.nextInt(50), random.nextInt(50), 3));
+            gameObjects.add(new Fantome(random.nextInt(50), random.nextInt(50), 2));
+        }
     }
 
     /** This function is called once every frame and updates every GameObjects in the level.

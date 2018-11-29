@@ -164,7 +164,8 @@ public class GameObject {
      */
     public static GameObject findByName(String name) {
 
-        return SceneManager.getInstance().getActiveScene().getGameObjectByName(name);
+//        return SceneManager.getInstance().getActiveScene().getGameObjectByName(name);
+        return Engine.getInstance().getGame().findGameObjectByName(name);
     }
 
     /** Removes a GameObject.
@@ -177,6 +178,6 @@ public class GameObject {
             components.get(i).destroy();
         }
 
-        SceneManager.getInstance().getActiveScene().removeGameObject(this);
+//        SceneManager.getInstance().getActiveScene().removeGameObject(this);
     }
 }

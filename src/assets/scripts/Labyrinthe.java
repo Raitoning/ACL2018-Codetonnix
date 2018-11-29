@@ -22,13 +22,13 @@ public class Labyrinthe extends GameObject {
         randomSpecialTilesinit(cases,30);
 
         for (int i = 0; i < NBCASES - 1; i++) {
-            cases[0][i].destroy();
+//            cases[0][i].destroy();
             cases[0][i] = new CaseMur(0, i);
-            cases[NBCASES - 1][i].destroy();
+//            cases[NBCASES - 1][i].destroy();
             cases[NBCASES - 1][i] = new CaseMur(NBCASES - 1, i);
-            cases[i][0].destroy();
+//            cases[i][0].destroy();
             cases[i][0] = new CaseMur(i, 0);
-            cases[i][NBCASES - 1].destroy();
+//            cases[i][NBCASES - 1].destroy();
             cases[i][NBCASES - 1] = new CaseMur(i, NBCASES - 1);
         }
         this.updateImageMur();
