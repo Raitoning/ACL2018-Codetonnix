@@ -3,35 +3,49 @@ abstract Personnage{
 + int ptsVie
 + int posX
 + int posY
++ boolean invincible
 +Personnage(int, int, int)
-+void deplacer(Cmd, Labyrinthe)
-+void attaquer()
++void update()
++void warp()
++void receiveDamage(int)
 }
 
-class Jeu{
-
-}
 
 class Heros{
++BoxCollider2d collider
++int animationID
++Labyrinthe labyrinthe
 +Heros(int, int, int)
++isAlive()
++attaquer()
 }
 class Monstre{
++BoxCollider2d collider
 +Monstre(int, int, int)
 }
 class Fantome{
++BoxCollider2D collider
++Heros heros
 +Fantome(int, int, int)
 }
 class Labyrinthe{
++Case[][] cases
++final int NBCASES = 50
 +Labyrinthe()
-+generer(File)
++void metaTilesInit(int,int,int)
++void randomSpecialTilesinit(Case[][],int)
++void randomCase(int,int,int)
++void randomGeneration(Case[][])
 }
 abstract Case{
 +int posX
 +int posY
 +Case(int, int)
 +void action()
++void isSolid()
 }
 class CaseDefaut{
++BoxCollider2D collider
 +CaseDefaut(int, int)
 }
 class CaseMur{
@@ -41,39 +55,34 @@ class CaseTresor{
 +CaseTresor(int, int)
 }
 class CasePassage{
++CasePassage link
 +CasePassage(int, int)
++CasePassage(int,int,CasePassage)
 }
 class CaseMagique{
++boolean active
 +CaseMagique(int, int)
 }
 class CasePiege{
 +CasePiege(int, int)
 }
-class HerosController{
-+HerosController()
-+void keyPressed(KeyEvent)
-+void keyReleased(KeyEvent)
-+void keyTyped(KeyEvent)
-+Cmd getCommand()
+
+class Scene
+
+class HelloScene{
++HelloScene()
++load()
 }
-interface GameController
-interface Game
-interface GamePainter
-class LabyrinthePainter{
-+int WIDTH
-+int HEIGHT
-+LabyrinthePainter()
-+draw(BufferedImage)
-}
-class Jeu{
-+Jeu()
-+evolve(Cmd)
-+isFinished()
+
+class Game{
++Game()
++update()
++findGameObjectByName(String)
 }
 
 Personnage <|-- Heros
 Personnage <|-- Monstre
-Monstre <|-- Fantome
+Personnage <|-- Fantome
 Case <|-- CaseDefaut
 Case <|-- CaseMur
 Case <|-- CaseTresor
@@ -81,13 +90,12 @@ Case <|-- CasePassage
 Case <|-- CaseMagique
 Case <|-- CasePiege
 
+HelloScene ---> Heros : heros
+HelloScene ---> Labyrinthe : labyrinthe
 Labyrinthe "1"-->"*" Case : cases
 Personnage "*"->"1" Labyrinthe : labyrinthe
-HerosController <-- Heros
-Jeu "1"-->"1" Labyrinthe : lab
-Jeu "1"-->"*" Personnage : personnages
-GameController <|. HerosController
-Game <|. Jeu
-LabyrinthePainter "1"<--"1" Jeu
-GamePainter <|. LabyrinthePainter
+Game "1"-->"1" Labyrinthe : lab
+Game "1"-->"*" Personnage : personnages
+HelloScene "*"<--"1" Game
+Scene <|- HelloScene
 @enduml
