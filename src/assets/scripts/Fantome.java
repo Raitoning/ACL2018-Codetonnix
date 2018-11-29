@@ -29,7 +29,7 @@ public class Fantome extends Personnage {
         transform.scale().setX(0.5f);
         transform.scale().setY(0.5f);
 
-        localSpriteRenderer= new SpriteRenderer("ghost",this);
+        localSpriteRenderer= new SpriteRenderer(idle+animationID,this);
 
         addComponent(localSpriteRenderer);
 

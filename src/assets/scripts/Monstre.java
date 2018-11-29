@@ -19,6 +19,13 @@ public class Monstre extends Personnage {
 
     private Random random;
 
+    private static final String idle = "zombie.idle";
+    private static final String left = "zombie.left";
+    private static final String right = "zombie.right";
+    private static final String up = "zombie.up";
+    private static final String down = "zombie.down";
+
+     SpriteRenderer localSpriteRenderer;
 
     // FIXME: Impossible de détruire le GameObject entièrement (trigger + sprite renderer)
     public Monstre(int x, int y, int sante) {
@@ -30,7 +37,10 @@ public class Monstre extends Personnage {
         transform.scale().setX(0.5f);
         transform.scale().setY(0.5f);
 
-        components.add(new SpriteRenderer("zombie", this));
+
+        localSpriteRenderer= new SpriteRenderer(idle+animationID,this);
+
+        components.add(localSpriteRenderer);
 
         components.add(new BoxCollider2D("Monsters", this));
 
@@ -71,7 +81,14 @@ public class Monstre extends Personnage {
                 randomY -= 1f;
             }
 
+            animationTimer += Time.deltaTime;
 
+            if (animationTimer >= animationTime) {
+
+                animationTimer = 0f;
+                animIDIncr();
+                localSpriteRenderer.setName(getAnimation());
+            }
 
             randomMoveTimer += Time.deltaTime;
 
@@ -81,5 +98,20 @@ public class Monstre extends Personnage {
 
             destroy();
         }
+    }
+
+    private String getAnimation(){
+
+        if (randomX<0.3f){
+            return left+animationID;
+        } else if(randomX>-0.3f){
+            return right+animationID;
+        } else if (randomY<-0.1f){
+            return down+animationID;
+        } else if(randomY>0.1f){
+            return up+animationID;
+        }
+
+        return idle+animationID;
     }
 }
