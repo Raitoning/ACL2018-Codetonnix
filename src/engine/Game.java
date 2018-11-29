@@ -81,6 +81,39 @@ public class Game {
         SpriteFactory.getInstance().addSprite("hero.anim3", "src/assets/textures/hero/anim2.png");
 
 
+        /* Ghost */
+
+        //IDLE
+        SpriteFactory.getInstance().addSprite("ghost.idle0", "src/assets/textures/ghost/idle0.png");
+        SpriteFactory.getInstance().addSprite("ghost.idle1", "src/assets/textures/ghost/idle1.png");
+        SpriteFactory.getInstance().addSprite("ghost.idle2", "src/assets/textures/ghost/idle2.png");
+        SpriteFactory.getInstance().addSprite("ghost.idle3", "src/assets/textures/ghost/idle3.png");
+
+        //LEFT
+        SpriteFactory.getInstance().addSprite("ghost.left0", "src/assets/textures/ghost/left0.png");
+        SpriteFactory.getInstance().addSprite("ghost.left1", "src/assets/textures/ghost/left1.png");
+        SpriteFactory.getInstance().addSprite("ghost.left2", "src/assets/textures/ghost/left2.png");
+        SpriteFactory.getInstance().addSprite("ghost.left3", "src/assets/textures/ghost/left3.png");
+
+
+        //RIGHT
+        SpriteFactory.getInstance().addSprite("ghost.right0", "src/assets/textures/ghost/right0.png");
+        SpriteFactory.getInstance().addSprite("ghost.right1", "src/assets/textures/ghost/right1.png");
+        SpriteFactory.getInstance().addSprite("ghost.right2", "src/assets/textures/ghost/right2.png");
+        SpriteFactory.getInstance().addSprite("ghost.right3", "src/assets/textures/ghost/right3.png");
+
+        //UP
+        SpriteFactory.getInstance().addSprite("ghost.up0", "src/assets/textures/ghost/up0.png");
+        SpriteFactory.getInstance().addSprite("ghost.up1", "src/assets/textures/ghost/up1.png");
+        SpriteFactory.getInstance().addSprite("ghost.up2", "src/assets/textures/ghost/up2.png");
+        SpriteFactory.getInstance().addSprite("ghost.up3", "src/assets/textures/ghost/up3.png");
+
+        //DOWN
+        SpriteFactory.getInstance().addSprite("ghost.down0", "src/assets/textures/ghost/down0.png");
+        SpriteFactory.getInstance().addSprite("ghost.down1", "src/assets/textures/ghost/down1.png");
+        SpriteFactory.getInstance().addSprite("ghost.down2", "src/assets/textures/ghost/down2.png");
+        SpriteFactory.getInstance().addSprite("ghost.down3", "src/assets/textures/ghost/down3.png");
+
 
         SpriteFactory.getInstance().addSprite("ghost", "src/assets/textures/ghost/down0.png");
         SpriteFactory.getInstance().addSprite("zombie", "src/assets/textures/zombie/down0.png");

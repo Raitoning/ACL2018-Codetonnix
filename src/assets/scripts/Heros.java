@@ -30,16 +30,20 @@ public class Heros extends Personnage {
     private float dashAttackTimer = 0.15f;
     private float dashAttackCooldown = 0.9f;
 
-    private float animationTime = 0.15f;
-    private float animationTimer;
 
-    private int animationID;
+    private float idleTimeBeforeAnimation = 5f;
+    private float idleTimer;
+
+
+
+    private boolean taunt;
 
     private static final String idle = "hero.idle";
     private static final String left = "hero.left";
     private static final String right = "hero.right";
     private static final String up = "hero.up";
     private static final String down = "hero.down";
+    private static final String anim = "hero.anim";
 
 
     SpriteRenderer localSpriteRenderer;
@@ -68,9 +72,11 @@ public class Heros extends Personnage {
         dashAttackTime = 0f;
         speed = 5f;
 
+
         //Animating
         animationID = 0;
-        animationTimer = 0f;
+        idleTimer =0f;
+        taunt = false;
 
         //Positioning
         transform.scale().setX(0.5f);
@@ -169,6 +175,7 @@ public class Heros extends Personnage {
             }
 
             animationTimer += Time.deltaTime;
+            idleTimer += Time.deltaTime;
 
             if (animationTimer >= animationTime) {
 
@@ -212,7 +219,7 @@ public class Heros extends Personnage {
             if (str) {
                 this.strength += 1;
             } else {
-                this.speed += 1.3f;
+                this.speed = 1.3f;
             }
         }
     }
@@ -280,16 +287,27 @@ public class Heros extends Personnage {
             return down+animationID;
         } else if(Input.getAxis("Vertical")>0){
             return up+animationID;
+        } else {
+
+            if (idleTimer >= idleTimeBeforeAnimation) {
+
+                idleTimer = 0f;
+                animationID =0;
+                taunt = true;
+            }
+
+
         }
 
+        if (taunt){
+            if (animationID==3){
+
+                taunt= false;
+            }
+            return anim+animationID;
+        }
 
         return idle+animationID;
     }
 
-    private void animIDIncr(){
-        animationID +=1;
-        if (animationID>3){
-            animationID =0;
-        }
-    }
 }

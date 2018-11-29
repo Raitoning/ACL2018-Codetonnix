@@ -15,6 +15,9 @@ public abstract class Personnage extends GameObject {
     protected boolean warped = false;
     protected float invincibleTimer;
     protected float invincibleTime = 0.2f;
+    protected float animationTimer;
+    protected float animationTime = 0.15f;
+    protected int animationID;
     protected GameObject healthBarObject;
     protected GameObject healthBarMaxObject;
 
@@ -25,6 +28,7 @@ public abstract class Personnage extends GameObject {
         this.ptsVie = ptsVie;
         this.ptsVieMax = ptsVie;
         this.invincible = false;
+        animationTimer=0f;
         healthBarMaxObject = new GameObject();
         healthBarMaxObject.addComponent(new SpriteRenderer("healthBarMax", healthBarMaxObject));
         healthBarMaxObject.getTransform().scale().setX(1f);
@@ -126,6 +130,13 @@ public abstract class Personnage extends GameObject {
     public void setInvincible(boolean invincible) {
 
         this.invincible = invincible;
+    }
+
+    protected void animIDIncr(){
+        animationID +=1;
+        if (animationID>3){
+            animationID =0;
+        }
     }
 
     @Override
