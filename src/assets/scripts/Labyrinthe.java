@@ -31,8 +31,7 @@ public class Labyrinthe extends GameObject {
             cases[i][NBCASES - 1].destroy();
             cases[i][NBCASES - 1] = new CaseMur(i, NBCASES - 1);
         }
-
-        //System.out.println(this); //affichage du labyrinthe généré
+        this.updateImageMur();
     }
 
     public void generer(File f){
@@ -323,6 +322,16 @@ public class Labyrinthe extends GameObject {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    private void updateImageMur(){
+        for (int i=1;i<cases.length;i++){
+            for(int j=0;j<cases[0].length;j++){
+                if(cases[j][i].isSolid()){
+                    if(cases[j][i-1].isSolid()) ((CaseMur)cases[j][i]).setSr("wallup");
+                }
+            }
+        }
     }
 
     private void randomGeneration (Case cases[][]){
