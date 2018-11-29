@@ -1,5 +1,6 @@
 package engine;
 
+import assets.scenes.HelloScene;
 import assets.scripts.Fantome;
 import assets.scripts.Heros;
 import assets.scripts.Labyrinthe;
@@ -86,6 +87,8 @@ public class Game {
         SpriteFactory.getInstance().addSprite("trap", "src/assets/textures/trap.png");
         SpriteFactory.getInstance().addSprite("passage", "src/assets/textures/passage.png");
         SpriteFactory.getInstance().addSprite("treasure", "src/assets/textures/treasure.png");
+        SpriteFactory.getInstance().addSprite("healthBar", "src/assets/textures/healthBar.png");
+        SpriteFactory.getInstance().addSprite("healthBarMax", "src/assets/textures/healthBarMax.png");
 
         Engine.getInstance().getPhysics().addLayer("World");
         Engine.getInstance().getPhysics().addLayer("Player");
@@ -93,18 +96,20 @@ public class Game {
 
         gameObjects = new ArrayList<>();
 
-        gameObjects.add(new Heros(0,0, 10));
+        new HelloScene();
 
-        gameObjects.add(new Labyrinthe());
-        ((Heros)findGameObjectByName("Player")).setLabyrinthe((Labyrinthe)findGameObjectByName("Labyrinthe"));
-
-        Random random = new Random();
-
-        for (int i = 0; i < 5; i++) {
-
-            gameObjects.add(new Monstre(random.nextInt(50), random.nextInt(50), 3));
-            gameObjects.add(new Fantome(random.nextInt(50), random.nextInt(50), 2));
-        }
+//        gameObjects.add(new Heros(0,0, 10));
+//
+//        gameObjects.add(new Labyrinthe());
+//        ((Heros)findGameObjectByName("Player")).setLabyrinthe((Labyrinthe)findGameObjectByName("Labyrinthe"));
+//
+//        Random random = new Random();
+//
+//        for (int i = 0; i < 5; i++) {
+//
+//            gameObjects.add(new Monstre(random.nextInt(50), random.nextInt(50), 3));
+//            gameObjects.add(new Fantome(random.nextInt(50), random.nextInt(50), 2));
+//        }
     }
 
     /** This function is called once every frame and updates every GameObjects in the level.

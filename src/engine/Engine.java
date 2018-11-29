@@ -3,6 +3,8 @@ package engine;
 import engine.input.Input;
 import engine.physics.Physics;
 import engine.rendering.SoftwareRenderer;
+import engine.scene.SceneManager;
+
 import java.awt.event.KeyEvent;
 
 /**
@@ -33,6 +35,7 @@ public class Engine {
     private Game game;
     private Physics physics;
     private Input input;
+    private SceneManager sceneManager;
 
     private Engine() {
 
@@ -47,7 +50,11 @@ public class Engine {
 
         softwareRenderer = new SoftwareRenderer(1280,720);
 
+        sceneManager = SceneManager.getInstance();
+
         game = new Game();
+
+        sceneManager.startGame();
 
         update();
     }
@@ -68,7 +75,8 @@ public class Engine {
                 isRunning = false;
             }
 
-            game.update();
+//            game.update();
+            sceneManager.update();
             physics.update();
 
             if(ecoRenderingMode) {

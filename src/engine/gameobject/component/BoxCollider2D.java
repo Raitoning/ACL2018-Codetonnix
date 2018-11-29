@@ -46,7 +46,7 @@ public class BoxCollider2D extends Collider {
     @Override
     public void destroy() {
         super.destroy();
-
+        gameObject = null;
         dimensions = null;
     }
 }

@@ -20,6 +20,7 @@ public class Monstre extends Personnage {
     private Random random;
 
 
+    // FIXME: Impossible de détruire le GameObject entièrement (trigger + sprite renderer)
     public Monstre(int x, int y, int sante) {
 
         super(x, y, sante);
@@ -31,10 +32,10 @@ public class Monstre extends Personnage {
 
         addComponent(new SpriteRenderer("zombie", this));
 
-        collider = new BoxCollider2D("Monsters", this);
-        addComponent(collider);
+        addComponent(new BoxCollider2D("Monster", this));
 
         trigger = new BoxCollider2D("Monsters", this);
+        trigger.setTrigger(true);
         addComponent(trigger);
 
         random = new Random();
@@ -42,40 +43,41 @@ public class Monstre extends Personnage {
 
     @Override
     public void update() {
+        super.update();
 
         if (ptsVie>0){
 
-        if(invincible) {
+            if(invincible) {
 
-            invincibleTimer += Time.deltaTime;
+                invincibleTimer += Time.deltaTime;
 
-            if (invincibleTimer >= invincibleTime) {
+                if (invincibleTimer >= invincibleTime) {
 
-                invincibleTimer = 0f;
-                invincible = false;
+                    invincibleTimer = 0f;
+                    invincible = false;
+                }
             }
-        }
 
-        if(randomMoveTimer >= randomMoveTime) {
+            if(randomMoveTimer >= randomMoveTime) {
 
-            randomMoveTimer = 0f;
+                randomMoveTimer = 0f;
 
-            randomX = random.nextFloat();
-            randomX *= 2f;
-            randomX -= 1f;
+                randomX = random.nextFloat();
+                randomX *= 2f;
+                randomX -= 1f;
 
-            randomY = random.nextFloat();
-            randomY *= 2f;
-            randomY -= 1f;
-        }
+                randomY = random.nextFloat();
+                randomY *= 2f;
+                randomY -= 1f;
+            }
 
-        randomMoveTimer += Time.deltaTime;
+            randomMoveTimer += Time.deltaTime;
 
-        transform.position().setX(transform.position().getX() + randomX * 5f * Time.deltaTime);
-        transform.position().setY(transform.position().getY() + randomY * 5f * Time.deltaTime);
+            transform.position().setX(transform.position().getX() + randomX * 5f * Time.deltaTime);
+            transform.position().setY(transform.position().getY() + randomY * 5f * Time.deltaTime);
         } else {
-            transform.position().setX(-500);
-            transform.position().setY(-500);
+
+            destroy();
         }
     }
 
@@ -84,6 +86,10 @@ public class Monstre extends Personnage {
         super.destroy();
 
         trigger.destroy();
+        trigger = null;
         collider.destroy();
+        collider = null;
+
+        random = null;
     }
 }

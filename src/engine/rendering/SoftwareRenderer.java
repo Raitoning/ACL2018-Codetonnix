@@ -75,6 +75,14 @@ public class SoftwareRenderer {
 
         Arrays.fill(rawFrameBuffer, CLEARCOLOR);
 
+        System.out.println("Number of cameras: " + cameras.size());
+        System.out.println("Number of sprites: " + sprites.size());
+
+        for (int i = 0; i < sprites.size(); i++) {
+
+            System.out.println(sprites.get(i).getGameObject());
+        }
+
         cameraSort();
 
         for (int i = cameras.size() - 1; i > -1; i--) {
@@ -208,13 +216,19 @@ public class SoftwareRenderer {
 
     /** Set the activeCamera used to render its content.
      *
-     * @param activeCamera The activeCamera to use for rendering.
+     * @param camera The activeCamera to use for rendering.
      */
-    public void setActiveCamera(Camera activeCamera) {
+    public void addCamera(Camera camera) {
 
-        this.activeCamera = activeCamera;
+        if(!cameras.contains(camera)) {
 
-        cameras.add(activeCamera);
+            cameras.add(camera);
+        }
+    }
+
+    public void removeCamera(Camera camera) {
+
+        cameras.remove(camera);
     }
 
     /** Get the width of the rendering zone.

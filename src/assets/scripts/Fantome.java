@@ -29,35 +29,35 @@ public class Fantome extends Personnage {
 
     @Override
     public void update() {
+        super.update();
 
         if (ptsVie>0){
 
-        if(invincible) {
+            if(invincible) {
 
-            invincibleTimer += Time.deltaTime;
+                invincibleTimer += Time.deltaTime;
 
-            if (invincibleTimer >= invincibleTime) {
+                if (invincibleTimer >= invincibleTime) {
 
-                invincibleTimer = 0f;
-                invincible = false;
+                    invincibleTimer = 0f;
+                    invincible = false;
+                }
             }
+
+            if(heros == null) {
+
+                heros = (Heros)findByName("Player");
+            } else {
+
+                transform.position().setX(Mathf.lerp(transform.position().getX(),
+                        heros.getTransform().position().getX(), Time.deltaTime));
+                transform.position().setY(Mathf.lerp(transform.position().getY(),
+                        heros.getTransform().position().getY(), Time.deltaTime));
         }
 
-        if(heros == null) {
-
-            heros = (Heros)findByName("Player");
         } else {
 
-            transform.position().setX(Mathf.lerp(transform.position().getX(),
-                    heros.getTransform().position().getX(), Time.deltaTime));
-            transform.position().setY(Mathf.lerp(transform.position().getY(),
-                    heros.getTransform().position().getY(), Time.deltaTime));
-        }
-
-        } else {
-            //TODO: Upgrade
-            transform.position().setX(-500);
-            transform.position().setY(-500);
+            destroy();
         }
     }
 
@@ -65,6 +65,7 @@ public class Fantome extends Personnage {
     public void destroy() {
         super.destroy();
 
+        heros = null;
         trigger.destroy();
     }
 }
