@@ -37,6 +37,8 @@ public class Game {
 
         /* LEGACY
         SpriteFactory.getInstance().addSprite("heros", "src/assets/textures/heros.png");
+        SpriteFactory.getInstance().addSprite("ghost", "src/assets/textures/ghost/down0.png");
+        SpriteFactory.getInstance().addSprite("zombie", "src/assets/textures/zombie/down0.png");
               */
 
         /* Hero */
@@ -115,8 +117,40 @@ public class Game {
         SpriteFactory.getInstance().addSprite("ghost.down3", "src/assets/textures/ghost/down3.png");
 
 
-        SpriteFactory.getInstance().addSprite("ghost", "src/assets/textures/ghost/down0.png");
-        SpriteFactory.getInstance().addSprite("zombie", "src/assets/textures/zombie/down0.png");
+        /* Zombie */
+
+        //IDLE
+        SpriteFactory.getInstance().addSprite("zombie.idle0", "src/assets/textures/zombie/idle0.png");
+        SpriteFactory.getInstance().addSprite("zombie.idle1", "src/assets/textures/zombie/idle1.png");
+        SpriteFactory.getInstance().addSprite("zombie.idle2", "src/assets/textures/zombie/idle2.png");
+        SpriteFactory.getInstance().addSprite("zombie.idle3", "src/assets/textures/zombie/idle3.png");
+
+        //LEFT
+        SpriteFactory.getInstance().addSprite("zombie.left0", "src/assets/textures/zombie/left0.png");
+        SpriteFactory.getInstance().addSprite("zombie.left1", "src/assets/textures/zombie/left1.png");
+        SpriteFactory.getInstance().addSprite("zombie.left2", "src/assets/textures/zombie/left2.png");
+        SpriteFactory.getInstance().addSprite("zombie.left3", "src/assets/textures/zombie/left3.png");
+
+
+        //RIGHT
+        SpriteFactory.getInstance().addSprite("zombie.right0", "src/assets/textures/zombie/right0.png");
+        SpriteFactory.getInstance().addSprite("zombie.right1", "src/assets/textures/zombie/right1.png");
+        SpriteFactory.getInstance().addSprite("zombie.right2", "src/assets/textures/zombie/right2.png");
+        SpriteFactory.getInstance().addSprite("zombie.right3", "src/assets/textures/zombie/right3.png");
+
+        //UP
+        SpriteFactory.getInstance().addSprite("zombie.up0", "src/assets/textures/zombie/up0.png");
+        SpriteFactory.getInstance().addSprite("zombie.up1", "src/assets/textures/zombie/up1.png");
+        SpriteFactory.getInstance().addSprite("zombie.up2", "src/assets/textures/zombie/up2.png");
+        SpriteFactory.getInstance().addSprite("zombie.up3", "src/assets/textures/zombie/up3.png");
+
+        //DOWN
+        SpriteFactory.getInstance().addSprite("zombie.down0", "src/assets/textures/zombie/down0.png");
+        SpriteFactory.getInstance().addSprite("zombie.down1", "src/assets/textures/zombie/down1.png");
+        SpriteFactory.getInstance().addSprite("zombie.down2", "src/assets/textures/zombie/down2.png");
+        SpriteFactory.getInstance().addSprite("zombie.down3", "src/assets/textures/zombie/down3.png");
+
+
         SpriteFactory.getInstance().addSprite("magic", "src/assets/textures/magic.png");
         SpriteFactory.getInstance().addSprite("trap", "src/assets/textures/trap.png");
         SpriteFactory.getInstance().addSprite("passage", "src/assets/textures/passage.png");

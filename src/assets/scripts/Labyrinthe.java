@@ -252,8 +252,8 @@ public class Labyrinthe extends GameObject {
 
             while (!outOfBounds(x,y)&&(!cases[x][y].toString().equals("0"))) {
 
-                x = r.nextInt(getNBCASES());
-                y = r.nextInt(getNBCASES());
+                x = r.nextInt(getNBCASES()-2)+1;
+                y = r.nextInt(getNBCASES()-2)+1;
             }
 
             if (i == 0) {
@@ -283,13 +283,13 @@ public class Labyrinthe extends GameObject {
     private CasePassage dualPassage(CasePassage p) {
 
         Random r = new Random();
-        int x = r.nextInt(getNBCASES() - 1);
-        int y = r.nextInt(getNBCASES() - 1);
+        int x = r.nextInt(getNBCASES() - 2)+1;
+        int y = r.nextInt(getNBCASES() - 2)+1;
 
         while (!cases[x][y].toString().equals("0")) {
 
-            x = r.nextInt(getNBCASES() - 1);
-            y = r.nextInt(getNBCASES() - 1);
+            x = r.nextInt(getNBCASES() - 2)+1;
+            y = r.nextInt(getNBCASES() - 2)+1;
         }
 
         setCase(new CasePassage(x,y,p),x,y);

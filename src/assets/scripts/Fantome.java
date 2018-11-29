@@ -29,7 +29,7 @@ public class Fantome extends Personnage {
         transform.scale().setX(0.5f);
         transform.scale().setY(0.5f);
 
-        localSpriteRenderer= new SpriteRenderer("ghost",this);
+        localSpriteRenderer= new SpriteRenderer(idle+animationID,this);
 
         addComponent(localSpriteRenderer);
 
@@ -82,9 +82,9 @@ public class Fantome extends Personnage {
 
     private String getAnimation(){
 
-        if (transform.position().getX()-heros.getTransform().position().getX()>0.3f){
+        if (transform.position().getX()-heros.getTransform().position().getX()>0.5f){
             return left+animationID;
-        } else if(transform.position().getX()-heros.getTransform().position().getX()<-0.3f){
+        } else if(transform.position().getX()-heros.getTransform().position().getX()<-0.5f){
             return right+animationID;
         } else if (transform.position().getY()-heros.getTransform().position().getY()>-0.1f){
             return down+animationID;
