@@ -98,6 +98,7 @@ public abstract class Personnage extends GameObject {
     public void update() {
         healthBarMaxObject.getTransform().setPosition(transform.position().getX(),transform.position().getY()-0.5f,-1);
         healthBarObject.getTransform().setPosition(transform.position().getX(),transform.position().getY()-0.5f,-2);
+        healthBarObject.getTransform().scale().setX((float)ptsVie/(float)ptsVieMax);
     }
 
     public void warp(int x, int y) {
@@ -130,5 +131,7 @@ public abstract class Personnage extends GameObject {
     @Override
     public void destroy() {
         super.destroy();
+        healthBarObject.destroy();
+        healthBarMaxObject.destroy();
     }
 }
