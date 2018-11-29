@@ -251,8 +251,8 @@ public class Labyrinthe extends GameObject {
 
             while (!outOfBounds(x,y)&&(!cases[x][y].toString().equals("0"))) {
 
-                x = r.nextInt(getNBCASES());
-                y = r.nextInt(getNBCASES());
+                x = r.nextInt(getNBCASES()-2)+1;
+                y = r.nextInt(getNBCASES()-2)+1;
             }
 
             if (i == 0) {
