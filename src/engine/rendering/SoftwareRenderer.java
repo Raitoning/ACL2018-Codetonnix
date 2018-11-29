@@ -55,7 +55,7 @@ public class SoftwareRenderer {
 
         aspectRatio = (float)width/(float)height;
 
-        window = new JFrame("Software rendering tests");
+        window = new JFrame("Codetonnix");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.add(new JLabel(new ImageIcon(outputImage)));
         window.setSize(width, height);
@@ -75,13 +75,13 @@ public class SoftwareRenderer {
 
         Arrays.fill(rawFrameBuffer, CLEARCOLOR);
 
-        System.out.println("Number of cameras: " + cameras.size());
-        System.out.println("Number of sprites: " + sprites.size());
+//        System.out.println("Number of cameras: " + cameras.size());
+//        System.out.println("Number of sprites: " + sprites.size());
 
-        for (int i = 0; i < sprites.size(); i++) {
-
-            System.out.println(sprites.get(i).getGameObject());
-        }
+//        for (int i = 0; i < sprites.size(); i++) {
+//
+//            System.out.println(sprites.get(i).getGameObject());
+//        }
 
         cameraSort();
 
@@ -122,6 +122,8 @@ public class SoftwareRenderer {
 
             renderTextureFrameBuffer.dispose();
         }
+
+//        frameBuffer.drawImage(outputBuffer, null, 0, 0);
         window.repaint();
     }
 
@@ -181,10 +183,7 @@ public class SoftwareRenderer {
      */
     public void removeSpriteFromQueue(SpriteRenderer sprite) {
 
-        if(sprites.contains(sprite)) {
-
-            sprites.remove(sprite);
-        }
+        sprites.remove(sprite);
     }
 
     /** Get the aspect ratio of the rendering zone.

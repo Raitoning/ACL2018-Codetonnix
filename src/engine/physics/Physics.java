@@ -57,15 +57,14 @@ public class Physics {
             }
         }
 
-        for (int i = 0; i < layers.size(); i++) {
-
-            System.out.println("Layer " + i + ": " + layers.get(i).size());
-
-            for (int j = 0; j < layers.get(i).size(); j++) {
-
-                System.out.println(layers.get(i).getCollider(j).getGameObject());
-            }
-        }
+//        for (int i = 0; i < layers.size(); i++) {
+//
+//            for (int j = 0; j < layers.get(i).size(); j++) {
+//
+//                System.out.println("Layer " + i + ": " + layers.get(i).getCollider(j));
+//
+//            }
+//        }
     }
 
 
@@ -237,7 +236,7 @@ public class Physics {
             if(layers.get(i).contains(value)) {
 
                 layers.get(i).removeCollider(value);
-                System.out.println("Collider removed");
+//                System.out.println("Collider removed");
             }
         }
     }

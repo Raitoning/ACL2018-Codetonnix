@@ -188,12 +188,12 @@ public class Heros extends Personnage {
             cameraObject.getTransform().position().setY(Mathf.clamp(transform.position().getY(), camera.getOrthographicSize() / 2f, labyrinthe.getNBCASES() - (camera.getOrthographicSize() / 2f)) - 0.5f);
         }
 
-        if(Input.getKey(KeyEvent.VK_SPACE)) {
-
-            cameraObject.destroy();
-            cameraObject = null;
-            SceneManager.getInstance().unloadActiveScene();
-        }
+//        if(Input.getKey(KeyEvent.VK_SPACE)) {
+//
+//            cameraObject.destroy();
+//            cameraObject = null;
+//            SceneManager.getInstance().unloadActiveScene();
+//        }
     }
 
     public void magicHeal(int amount){

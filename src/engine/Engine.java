@@ -23,7 +23,7 @@ public class Engine {
 
     public static Engine instance;
 
-    private int targetFrameRate = 60;
+    private int targetFrameRate = 30;
     private long startupTime;
     private long frameStartTime;
     private long deltaTime;
