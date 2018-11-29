@@ -24,7 +24,7 @@ public class CaseTresor extends Case{
     @Override
     public void action(Heros h) {
         //met fin au jeu
-        System.out.println("Tu as vaincu ! Espèrons que tu ais 20 chaises maintenant...");
+        System.out.println("Tu as vaincu !");
     }
 
     @Override
