@@ -32,7 +32,54 @@ public class Game {
 
         SpriteFactory.getInstance().addSprite("wall", "src/assets/textures/mur.png");
         SpriteFactory.getInstance().addSprite("floor", "src/assets/textures/sol.png");
+
+        /* LEGACY
         SpriteFactory.getInstance().addSprite("heros", "src/assets/textures/heros.png");
+              */
+
+        /* Hero */
+
+        //IDLE
+        SpriteFactory.getInstance().addSprite("hero.idle0", "src/assets/textures/hero/idle0.png");
+        SpriteFactory.getInstance().addSprite("hero.idle1", "src/assets/textures/hero/idle1.png");
+        SpriteFactory.getInstance().addSprite("hero.idle2", "src/assets/textures/hero/idle2.png");
+        SpriteFactory.getInstance().addSprite("hero.idle3", "src/assets/textures/hero/idle3.png");
+
+        //LEFT
+        SpriteFactory.getInstance().addSprite("hero.left0", "src/assets/textures/hero/left0.png");
+        SpriteFactory.getInstance().addSprite("hero.left1", "src/assets/textures/hero/left1.png");
+        SpriteFactory.getInstance().addSprite("hero.left2", "src/assets/textures/hero/left2.png");
+        SpriteFactory.getInstance().addSprite("hero.left3", "src/assets/textures/hero/left3.png");
+        SpriteFactory.getInstance().addSprite("hero.leftA", "src/assets/textures/hero/leftAttackStance.png");
+
+
+        //RIGHT
+        SpriteFactory.getInstance().addSprite("hero.right0", "src/assets/textures/hero/right0.png");
+        SpriteFactory.getInstance().addSprite("hero.right1", "src/assets/textures/hero/right1.png");
+        SpriteFactory.getInstance().addSprite("hero.right2", "src/assets/textures/hero/right2.png");
+        SpriteFactory.getInstance().addSprite("hero.right3", "src/assets/textures/hero/right3.png");
+        SpriteFactory.getInstance().addSprite("hero.rightA", "src/assets/textures/hero/rightAttackStance.png");
+
+        //UP
+        SpriteFactory.getInstance().addSprite("hero.up0", "src/assets/textures/hero/up0.png");
+        SpriteFactory.getInstance().addSprite("hero.up1", "src/assets/textures/hero/up1.png");
+        SpriteFactory.getInstance().addSprite("hero.up2", "src/assets/textures/hero/up2.png");
+        SpriteFactory.getInstance().addSprite("hero.up3", "src/assets/textures/hero/up3.png");
+
+        //DOWN
+        SpriteFactory.getInstance().addSprite("hero.down0", "src/assets/textures/hero/down0.png");
+        SpriteFactory.getInstance().addSprite("hero.down1", "src/assets/textures/hero/down1.png");
+        SpriteFactory.getInstance().addSprite("hero.down2", "src/assets/textures/hero/down2.png");
+        SpriteFactory.getInstance().addSprite("hero.down3", "src/assets/textures/hero/down3.png");
+
+        //ANIMATION
+        SpriteFactory.getInstance().addSprite("hero.anim0", "src/assets/textures/hero/anim0.png");
+        SpriteFactory.getInstance().addSprite("hero.anim1", "src/assets/textures/hero/anim1.png");
+        SpriteFactory.getInstance().addSprite("hero.anim2", "src/assets/textures/hero/anim2.png");
+        SpriteFactory.getInstance().addSprite("hero.anim3", "src/assets/textures/hero/anim2.png");
+
+
+
         SpriteFactory.getInstance().addSprite("ghost", "src/assets/textures/ghost/down0.png");
         SpriteFactory.getInstance().addSprite("zombie", "src/assets/textures/zombie/down0.png");
         SpriteFactory.getInstance().addSprite("magic", "src/assets/textures/magic.png");

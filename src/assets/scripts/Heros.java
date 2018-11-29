@@ -29,6 +29,20 @@ public class Heros extends Personnage {
     private float dashAttackTimer = 0.15f;
     private float dashAttackCooldown = 0.9f;
 
+    private float animationTime = 0.15f;
+    private float animationTimer;
+
+    private int animationID;
+
+    private static final String idle = "hero.idle";
+    private static final String left = "hero.left";
+    private static final String right = "hero.right";
+    private static final String up = "hero.up";
+    private static final String down = "hero.down";
+
+
+    SpriteRenderer localSpriteRenderer;
+
 
     private boolean activeMagic;
     private float magicEffectTimer;
@@ -46,17 +60,27 @@ public class Heros extends Personnage {
     public Heros(int posX, int posY, int ptsVie) {
         super(posX, posY, ptsVie);
 
+
+        //Attacking
         canDash = true;
         isDashing = false;
         dashAttackTime = 0f;
         speed = 5f;
 
+        //Animating
+        animationID = 0;
+        animationTimer = 0f;
+
+        //Positioning
         transform.scale().setX(0.5f);
         transform.scale().setY(0.5f);
 
+
         name = "Player";
 
-        components.add(new SpriteRenderer("heros", this));
+        localSpriteRenderer = new SpriteRenderer(idle+animationID, this);
+
+        components.add(localSpriteRenderer);
 
         collider2D = new BoxCollider2D("Player", this);
         components.add(collider2D);
@@ -143,6 +167,15 @@ public class Heros extends Personnage {
 
             }
 
+            animationTimer += Time.deltaTime;
+
+            if (animationTimer >= animationTime) {
+
+                animationTimer = 0f;
+                animIDIncr();
+                localSpriteRenderer.setName(getAnimation());
+            }
+
 
 
             transform.position().setX(transform.position().getX() + Input.getAxis("Horizontal") * speed * Time.deltaTime);
@@ -206,6 +239,40 @@ public class Heros extends Personnage {
             isDashing = true;
             invincible = true;
             speed *= 2;
+        }
+    }
+
+
+
+    private String getAnimation(){
+
+        if(isDashing){
+            if (Input.getAxis("Horizontal")>0){
+                return right+'A';
+            } else {
+                return left+'A';
+            }
+
+        }
+
+        if (Input.getAxis("Horizontal")<0){
+            return left+animationID;
+        } else if(Input.getAxis("Horizontal")>0){
+            return right+animationID;
+        } else if (Input.getAxis("Vertical")<0){
+            return down+animationID;
+        } else if(Input.getAxis("Vertical")>0){
+            return up+animationID;
+        }
+
+
+        return idle+animationID;
+    }
+
+    private void animIDIncr(){
+        animationID +=1;
+        if (animationID>3){
+            animationID =0;
         }
     }
 }
