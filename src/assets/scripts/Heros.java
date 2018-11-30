@@ -10,6 +10,7 @@ import engine.gameobject.component.Camera;
 import engine.gameobject.component.Collider;
 import engine.gameobject.component.SpriteRenderer;
 import engine.input.Input;
+import engine.scene.SceneManager;
 
 import java.awt.event.KeyEvent;
 
@@ -30,6 +31,24 @@ public class Heros extends Personnage {
     private float dashAttackCooldown = 0.9f;
 
 
+    private float idleTimeBeforeAnimation = 5f;
+    private float idleTimer;
+
+
+
+    private boolean taunt;
+
+    private static final String idle = "hero.idle";
+    private static final String left = "hero.left";
+    private static final String right = "hero.right";
+    private static final String up = "hero.up";
+    private static final String down = "hero.down";
+    private static final String anim = "hero.anim";
+
+
+    SpriteRenderer localSpriteRenderer;
+
+
     private boolean activeMagic;
     private float magicEffectTimer;
     private float magicEffectDuration = 10f;
@@ -46,17 +65,29 @@ public class Heros extends Personnage {
     public Heros(int posX, int posY, int ptsVie) {
         super(posX, posY, ptsVie);
 
+
+        //Attacking
         canDash = true;
         isDashing = false;
         dashAttackTime = 0f;
         speed = 5f;
 
+
+        //Animating
+        animationID = 0;
+        idleTimer =0f;
+        taunt = false;
+
+        //Positioning
         transform.scale().setX(0.5f);
         transform.scale().setY(0.5f);
 
+
         name = "Player";
 
-        components.add(new SpriteRenderer("heros", this));
+        localSpriteRenderer = new SpriteRenderer(idle+animationID, this);
+
+        components.add(localSpriteRenderer);
 
         collider2D = new BoxCollider2D("Player", this);
         components.add(collider2D);
@@ -66,15 +97,17 @@ public class Heros extends Personnage {
         components.add(trigger2D);
 
         cameraObject = new GameObject();
-        camera = new Camera(10f, 0f, 2f, cameraObject);
+        camera = new Camera(10f, -2f, 2f, cameraObject);
         minimap = new Camera(15f, 0f, 2f, cameraObject);
         minimap.setMinRenderArea(new Vector2(0.75f, 0.75f));
         minimap.setRenderPriority(-2);
-        camera.getGameObject().addComponent(camera);
+        cameraObject.addComponent(camera);
+        cameraObject.addComponent(minimap);
     }
 
     @Override
     public void update() {
+        super.update();
 
         if(isAlive()) {
 
@@ -126,7 +159,6 @@ public class Heros extends Personnage {
                     dashAttackTime = 0f;
                     canDash = true;
                 }
-
             }
 
             if (isDashing) {
@@ -140,7 +172,16 @@ public class Heros extends Personnage {
                     canDash = false;
                     speed = 5f;
                 }
+            }
 
+            animationTimer += Time.deltaTime;
+            idleTimer += Time.deltaTime;
+
+            if (animationTimer >= animationTime) {
+
+                animationTimer = 0f;
+                animIDIncr();
+                localSpriteRenderer.setName(getAnimation());
             }
 
 
@@ -149,16 +190,26 @@ public class Heros extends Personnage {
             transform.position().setY(transform.position().getY() + Input.getAxis("Vertical") * speed * Time.deltaTime);
 
 
-            cameraObject.getTransform().position().setX(Mathf.clamp(transform.position().getX(), ((camera.getOrthographicSize() * Engine.getInstance().getRenderer().getAspectRatio()) / 2f) - 0.5f, labyrinthe.getNBCASES() + 0.5f - camera.getOrthographicSize()));
+            cameraObject.getTransform().position().setX(Mathf.clamp(transform.position().getX(), ((camera.getOrthographicSize() * Engine.getInstance().getRenderer().getAspectRatio()) / 2f) - 0.5f, labyrinthe.getNBCASES() - camera.getOrthographicSize()));
 
             cameraObject.getTransform().position().setY(Mathf.clamp(transform.position().getY(), camera.getOrthographicSize() / 2f, labyrinthe.getNBCASES() - (camera.getOrthographicSize() / 2f)) - 0.5f);
         }
+
+//        if(Input.getKey(KeyEvent.VK_SPACE)) {
+//
+//            cameraObject.destroy();
+//            cameraObject = null;
+//            SceneManager.getInstance().unloadActiveScene();
+//        }
     }
 
-
     public void magicHeal(int amount){
-        if (ptsVie<10)
-         this.ptsVie += amount;
+        if (ptsVie + amount <= this.ptsVieMax){
+            this.ptsVie += amount;
+        }else{
+            this.ptsVie = this.ptsVieMax;
+        }
+
     }
 
     public void magicBuff(boolean str){
@@ -185,7 +236,6 @@ public class Heros extends Personnage {
         }
     }
 
-
     public boolean isAlive() {
 
         return ptsVie > 0;
@@ -198,7 +248,6 @@ public class Heros extends Personnage {
         transform.position().setY(labyrinthe.getNBCASES() / 2);
     }
 
-
     private void attaquer() {
 
         if (canDash&&!isDashing) {
@@ -208,4 +257,57 @@ public class Heros extends Personnage {
             speed *= 2;
         }
     }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+
+        labyrinthe.destroy();
+        labyrinthe = null;
+    }
+
+
+
+    private String getAnimation(){
+
+        if(isDashing){
+            if (Input.getAxis("Horizontal")>0){
+                return right+'A';
+            } else {
+                return left+'A';
+            }
+
+        }
+
+        if (Input.getAxis("Horizontal")<0){
+            return left+animationID;
+        } else if(Input.getAxis("Horizontal")>0){
+            return right+animationID;
+        } else if (Input.getAxis("Vertical")<0){
+            return down+animationID;
+        } else if(Input.getAxis("Vertical")>0){
+            return up+animationID;
+        } else {
+
+            if (idleTimer >= idleTimeBeforeAnimation) {
+
+                idleTimer = 0f;
+                animationID =0;
+                taunt = true;
+            }
+
+
+        }
+
+        if (taunt){
+            if (animationID==3){
+
+                taunt= false;
+            }
+            return anim+animationID;
+        }
+
+        return idle+animationID;
+    }
+
 }

@@ -12,17 +12,15 @@ public class Scene {
     protected ArrayList<GameObject> gameObjects;
     protected boolean isLoaded = false;
 
-    public Scene() {
+    public Scene(String name, int index) {
+
+        this.name = name;
 
         gameObjects = new ArrayList<>();
         id = numberOfScenes;
         numberOfScenes++;
-    }
 
-    public Scene(String name) {
-
-        this();
-        this.name = name;
+        SceneManager.getInstance().addScene(this, index);
     }
 
     protected void addGameObject(GameObject gameObject) {
@@ -30,12 +28,9 @@ public class Scene {
         gameObjects.add(gameObject);
     }
 
-    protected void removeGameObject(GameObject gameObject) {
+    public void removeGameObject(GameObject gameObject) {
 
-        if(gameObjects.contains(gameObject)) {
-
-            gameObjects.remove(gameObject);
-        }
+        gameObjects.remove(gameObject);
     }
 
     public String getName() {
@@ -87,7 +82,7 @@ public class Scene {
         }
 
         gameObjects.clear();
-        gameObjects = null;
+//        gameObjects = null;
     }
 
     public void load() {}

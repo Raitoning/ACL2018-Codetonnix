@@ -19,16 +19,20 @@ public class Labyrinthe extends GameObject {
 
         randomGeneration(cases);
 
-        randomSpecialTilesinit(cases,30);
-
         for (int i = 0; i < NBCASES - 1; i++) {
+//            cases[0][i].destroy();
             cases[0][i] = new CaseMur(0, i);
+//            cases[NBCASES - 1][i].destroy();
             cases[NBCASES - 1][i] = new CaseMur(NBCASES - 1, i);
+//            cases[i][0].destroy();
             cases[i][0] = new CaseMur(i, 0);
+//            cases[i][NBCASES - 1].destroy();
             cases[i][NBCASES - 1] = new CaseMur(i, NBCASES - 1);
         }
 
-        //System.out.println(this); //affichage du labyrinthe généré
+        randomSpecialTilesinit(cases,30);
+
+        this.updateImageMur();
     }
 
     public void generer(File f){
@@ -248,8 +252,8 @@ public class Labyrinthe extends GameObject {
 
             while (!outOfBounds(x,y)&&(!cases[x][y].toString().equals("0"))) {
 
-                x = r.nextInt(getNBCASES());
-                y = r.nextInt(getNBCASES());
+                x = r.nextInt(getNBCASES()-2)+1;
+                y = r.nextInt(getNBCASES()-2)+1;
             }
 
             if (i == 0) {
@@ -279,13 +283,13 @@ public class Labyrinthe extends GameObject {
     private CasePassage dualPassage(CasePassage p) {
 
         Random r = new Random();
-        int x = r.nextInt(getNBCASES() - 1);
-        int y = r.nextInt(getNBCASES() - 1);
+        int x = r.nextInt(getNBCASES() - 2)+1;
+        int y = r.nextInt(getNBCASES() - 2)+1;
 
         while (!cases[x][y].toString().equals("0")) {
 
-            x = r.nextInt(getNBCASES() - 1);
-            y = r.nextInt(getNBCASES() - 1);
+            x = r.nextInt(getNBCASES() - 2)+1;
+            y = r.nextInt(getNBCASES() - 2)+1;
         }
 
         setCase(new CasePassage(x,y,p),x,y);
@@ -319,6 +323,16 @@ public class Labyrinthe extends GameObject {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    private void updateImageMur(){
+        for (int i=1;i<cases.length;i++){
+            for(int j=0;j<cases[0].length;j++){
+                if(cases[j][i].isSolid()){
+                    if(cases[j][i-1].isSolid()) ((CaseMur)cases[j][i]).setSr("wallup");
+                }
+            }
+        }
     }
 
     private void randomGeneration (Case cases[][]){
@@ -367,5 +381,23 @@ public class Labyrinthe extends GameObject {
     public int getNBCASES() {
 
         return NBCASES;
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+
+        for (int i = 0; i < cases.length; i++) {
+
+            for (int j = 0; j < cases[i].length; j++) {
+
+                cases[i][j].destroy();
+                cases[i][j] = null;
+            }
+
+            cases[i] = null;
+        }
+
+        cases = null;
     }
 }

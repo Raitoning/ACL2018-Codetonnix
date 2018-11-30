@@ -7,13 +7,14 @@ import engine.gameobject.component.SpriteRenderer;
 public class CaseMur extends Case {
 
     private BoxCollider2D collider;
+    private SpriteRenderer sr;
 
     public CaseMur(int x, int y){
         super(x,y);
 
         transform.position().setZ(1f);
-
-        components.add(new SpriteRenderer("wall", this));
+        sr = new SpriteRenderer("wall", this);
+        components.add(sr);
 
         collider = new BoxCollider2D("World", this);
         collider.setIsStatic(true);
@@ -23,6 +24,10 @@ public class CaseMur extends Case {
     @Override
     public void action(Heros h) {
 
+    }
+
+    public void setSr(String s) {
+        this.sr.setName(s);
     }
 
     @Override
@@ -36,4 +41,11 @@ public class CaseMur extends Case {
         return true;
     }
 
+    @Override
+    public void destroy() {
+        super.destroy();
+
+        collider.destroy();
+        collider = null;
+    }
 }

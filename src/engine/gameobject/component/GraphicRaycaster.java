@@ -10,7 +10,7 @@ public class GraphicRaycaster implements Component {
     public GraphicRaycaster(GameObject gameObject) {
 
         this.gameObject = gameObject;
-        Input.getInstance().getMouseInput().addListener(this);
+        Input.getMouseInput().addListener(this);
     }
 
     public GameObject getGameObject() {
@@ -26,7 +26,7 @@ public class GraphicRaycaster implements Component {
     @Override
     public void destroy() {
 
-        Input.getInstance().getMouseInput().removeListener(this);
+        Input.getMouseInput().removeListener(this);
         gameObject = null;
     }
 }

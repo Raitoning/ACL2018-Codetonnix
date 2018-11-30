@@ -1,23 +1,43 @@
 package assets.scripts;
 
+import engine.Game;
+import engine.SpriteReference;
 import engine.gameobject.GameObject;
+import engine.gameobject.component.SpriteRenderer;
 
 public abstract class Personnage extends GameObject {
 
     protected int posX;
     protected int posY;
     protected int ptsVie;
+    protected int ptsVieMax;
     protected boolean invincible;
     protected boolean warped = false;
     protected float invincibleTimer;
     protected float invincibleTime = 0.2f;
+    protected float animationTimer;
+    protected float animationTime = 0.15f;
+    protected int animationID;
+    protected GameObject healthBarObject;
+    protected GameObject healthBarMaxObject;
 
     public Personnage(int posX, int posY, int ptsVie) {
 
         this.posX = posX;
         this.posY = posY;
         this.ptsVie = ptsVie;
+        this.ptsVieMax = ptsVie;
         this.invincible = false;
+        animationTimer=0f;
+        healthBarMaxObject = new GameObject();
+        healthBarMaxObject.addComponent(new SpriteRenderer("healthBarMax", healthBarMaxObject));
+        healthBarMaxObject.getTransform().scale().setX(1f);
+        healthBarMaxObject.getTransform().scale().setY(.1f);
+
+        healthBarObject = new GameObject(transform.position().getX(), transform.position().getY(), transform.position().getZ());
+        healthBarObject.addComponent(new SpriteRenderer("healthBar", healthBarObject));
+        healthBarObject.getTransform().scale().setX(1f);
+        healthBarObject.getTransform().scale().setY(0.1f);
 
         transform.position().setX(posX);
         transform.position().setY(posY);
@@ -78,6 +98,13 @@ public abstract class Personnage extends GameObject {
         }
     }
 
+    @Override
+    public void update() {
+        healthBarMaxObject.getTransform().setPosition(transform.position().getX(),transform.position().getY()-0.5f,-1);
+        healthBarObject.getTransform().setPosition(transform.position().getX(),transform.position().getY()-0.5f,-2);
+        healthBarObject.getTransform().scale().setX((float)ptsVie/(float)ptsVieMax);
+    }
+
     public void warp(int x, int y) {
 
         if(!warped) {
@@ -103,5 +130,18 @@ public abstract class Personnage extends GameObject {
     public void setInvincible(boolean invincible) {
 
         this.invincible = invincible;
+    }
+
+    protected void animIDIncr(){
+        animationID +=1;
+        if (animationID>3){
+            animationID =0;
+        }
+    }
+
+    @Override
+    public void destroy() {
+
+        transform.setPosition(-999f, -999f, -999f);
     }
 }

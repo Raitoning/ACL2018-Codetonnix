@@ -8,6 +8,7 @@ public class SceneManager {
 
     private ArrayList<Scene> scenes;
     private Scene activeScene;
+    private boolean isUnloading = false;
 
     private SceneManager() {
 
@@ -17,9 +18,12 @@ public class SceneManager {
 
     public void update() {
 
-        if(activeScene != null) {
+        if(!isUnloading) {
 
-            activeScene.update();
+            if(activeScene != null) {
+
+                activeScene.update();
+            }
         }
     }
 
@@ -42,24 +46,40 @@ public class SceneManager {
 
     public void unloadActiveScene() {
 
+        isUnloading = true;
         activeScene.unload();
-        System.gc();
+        activeScene = null;
+        isUnloading = false;
     }
 
     public void addScene(Scene scene) {
 
-        scenes.add(scene);
+        if(!scenes.contains(scene)) {
 
-        if(activeScene == null) {
+            scenes.add(scene);
+        }
+    }
 
-            activeScene = scene;
-            loadScene(scene.getName());
+    public void addScene(Scene scene, int index) {
+
+        if(!scenes.contains(scene)) {
+
+            scenes.add(index, scene);
         }
     }
 
     public Scene getActiveScene() {
 
         return activeScene;
+    }
+
+    public void startGame() {
+
+        if(scenes.size() != 0) {
+
+            activeScene = scenes.get(0);
+            activeScene.load();
+        }
     }
 
     public static SceneManager getInstance() {
